@@ -1,0 +1,21 @@
+<mvc:View
+    controllerName="com.solvia.management.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+    <Page
+        id="idPage"
+        title="{i18n>title}"
+    >
+        <content>
+            <HBox height="100%">
+                <mvc:View
+                    viewName="com.solvia.management.view.Aside"
+                    type="XML"
+                />
+                <Text text="BURASI MAIN PAGE" />
+            </HBox>
+        </content>
+    </Page>
+</mvc:View>

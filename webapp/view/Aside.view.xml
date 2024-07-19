@@ -1,0 +1,83 @@
+<mvc:View
+    controllerName="com.solvia.management.controller.Aside"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:tnt="sap.tnt"
+    height="100%"
+    displayBlock="true"
+    busyIndicatorDelay="0"
+>
+    <VBox
+        renderType="Bare"
+        alignItems="Start"
+        height="100%"
+    >
+        <tnt:SideNavigation
+            id="idSideNavigation"
+            selectedKey="idAnaSayfaNavigationListItem"
+            itemSelect="onSideNavigationItemSelect"
+        >
+            <tnt:NavigationList>
+                <tnt:NavigationListItem
+                    icon="sap-icon://menu2"
+                    select=".onNavigationListItemSelect"
+                >
+                    
+                </tnt:NavigationListItem>
+                <tnt:NavigationListItem
+                    id="idAnaSayfaNavigationListItem"
+                    text="Ana Sayfa"
+                    icon="sap-icon://home"
+                    key="main"
+                />
+            
+                <tnt:NavigationListItem
+                    text="Yeni"
+                    icon="sap-icon://create"
+                >
+                    <tnt:NavigationListItem
+                        text="Ürün Ekle"
+                        icon="sap-icon://accessibility  "
+                        key="addProduct"
+                    />
+                    <tnt:NavigationListItem
+                        text="Çalışan Ekle"
+                        icon="sap-icon://building"
+                        key="addEmployee"
+                    />
+                    <tnt:NavigationListItem
+                        text="Adres Ekle"
+                        icon="sap-icon://mileage"
+                        key="addAddress"
+                    />
+                </tnt:NavigationListItem>
+                <tnt:NavigationListItem
+                    text="Listele"
+                    icon="sap-icon://menu"
+                >
+                    <tnt:NavigationListItem text="Ürünler" />
+                    <tnt:NavigationListItem text="Çalışanlar" />
+                    <tnt:NavigationListItem text="Adresler" />
+                </tnt:NavigationListItem>
+                <tnt:NavigationListItem
+                    text="Yardım"
+                    icon="sap-icon://sys-help-2"
+                />
+            </tnt:NavigationList>
+            <tnt:fixedItem>
+                <tnt:NavigationList>
+                    <tnt:NavigationListItem
+                        href="https://www.solviads.com/tr/"
+                        target="_blank"
+                        text="Bağlantı"
+                        icon="sap-icon://attachment"
+                    />
+                    <tnt:NavigationListItem
+                        text="İletişim"
+                        icon="sap-icon://compare"
+                    />
+                </tnt:NavigationList>
+            </tnt:fixedItem>
+        </tnt:SideNavigation>
+    </VBox>
+</mvc:View>

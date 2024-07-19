@@ -1,0 +1,20 @@
+<mvc:View
+    controllerName="com.solvia.management.controller.AddEmployee"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true"
+    height="100%"
+    busyIndicatorDelay="0"
+>
+    <Page title="Çalışan Ekle">
+        <content>
+            <HBox height="100%">
+                <mvc:View
+                    viewName="com.solvia.management.view.Aside"
+                    type="XML"
+                />
+                <Text text="BURASI ÇALIŞAN EKLEME SAYFASI" />
+            </HBox>
+        </content>
+    </Page>
+</mvc:View>
