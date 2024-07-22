@@ -21,16 +21,14 @@
                 <tnt:NavigationListItem
                     icon="sap-icon://menu2"
                     select=".onNavigationListItemSelect"
-                >
-                    
-                </tnt:NavigationListItem>
+                />
                 <tnt:NavigationListItem
                     id="idAnaSayfaNavigationListItem"
                     text="Ana Sayfa"
                     icon="sap-icon://home"
                     key="main"
                 />
-            
+
                 <tnt:NavigationListItem
                     text="Yeni"
                     icon="sap-icon://create"

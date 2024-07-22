@@ -1,20 +1,207 @@
 <mvc:View
     controllerName="com.solvia.management.controller.AddProduct"
     xmlns:mvc="sap.ui.core.mvc"
+    xmlns:form="sap.ui.layout.form"
     xmlns="sap.m"
     displayBlock="true"
     height="100%"
     busyIndicatorDelay="0"
 >
-    <Page title="Ürün Ekle">
+    <Page
+        title="Ürün Ekle"
+        id="idWizardContentPage"
+        showHeader="false"
+        showNavButton="true"
+   
+    >
         <content>
             <HBox height="100%">
                 <mvc:View
                     viewName="com.solvia.management.view.Aside"
                     type="XML"
                 />
-                <Text text="BURASI ÜRÜN EKLEME SAYFASI" />
+                <Wizard
+                    id="idCreateProductWizard"
+                    class="sapUiResponsivePadding--header sapUiResponsivePadding--content"
+                    complete="onWizardComplete"
+                    width="100%"
+                >
+                    <steps>
+                        <WizardStep
+                            id="idProductTypeWizardStep"
+                            title="Ürün Ekleme Giriş"
+                        >
+                            <content>
+                                <MessageStrip
+                                    class="sapUiSmallMarginBottom"
+                                    text="Lütfen ürün için gerekli tüm alanları eksiksiz ve düzgün doldurunuz."
+                                    showIcon="true"
+                                />
+                                <Text
+                                    width="200%"
+                                    class="sapUiSmallMarginBottom"
+                                    text="Aşağıdaki seçeneklerden kaydedilecek ürünün kategorisini seçiniz.(Elektrikli kozmetik ürünleri, temizlik aletleri gibi ürünler için 'Diğer' seçeneğini seçiniz.)"
+                                />
+                                <HBox
+                                    alignItems="Center"
+                                    justifyContent="Center"
+                                    width="100%"
+                                >
+                                    <SegmentedButton
+                                        width="450px"
+                                        selectionChange="onSegmentedButtonSelectionChange"
+                                    >
+                                        <items>
+                                            <SegmentedButtonItem
+                                                key="1"
+                                                icon="sap-icon://iphone"
+                                                text="Teknolojik Alet"
+                                            />
+
+                                            <SegmentedButtonItem
+                                                key="2"
+                                                icon="sap-icon://washing-machine"
+                                                text="Beyaz Eşya"
+                                            />
+                                            <SegmentedButtonItem
+                                                key="3"
+                                                icon="sap-icon://product"
+                                                text="Diğer"
+                                            />
+                                        </items>
+                                    </SegmentedButton>
+                                </HBox>
+                            </content>
+                        </WizardStep>
+                        <WizardStep
+                            id="idProductInfoWizardStep"
+                            validated="true"
+                            title="Ürün Bilgileri"
+                            activate="onWizardStepActivate"
+                        >
+                            <content>
+                                <MessageStrip
+                                    class="sapUiSmallMarginBottom"
+                                    text="Ürün bilgilerini büyük küçük harflere dikkat ederek, düzgün ve eksiksiz bir şekilde doldurunuz."
+                                    showIcon="true"
+                                />
+                                <Text
+                                    text="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita veniam recusandae reprehenderit itaque nisi. Animi est deleniti voluptatem excepturi. Id quas labore unde, perspiciatis cupiditate repellendus sit pariatur debitis quam praesentium, harum, eum tempora doloribus.
+"
+                                />
+                                <form:SimpleForm
+                                    editable="true"
+                                    layout="ResponsiveGridLayout"
+                                >
+                                    <Label
+                                        text="Ürün Başlığı"
+                                        required="true"
+                                    />
+                                    <Input
+                                        valueStateText="Enter 6 symbols or more"
+                                        valueState="{/productNameState}"
+                                        id="idProductNameInput"
+                                        liveChange="onProductNameInputLiveChange"
+                                        placeholder="En az 6 karakter giriniz"
+                                        value="{/productName}"
+                                    />
+                                    <Label
+                                        text="Fiyat"
+                                        required="true"
+                                    />
+                                    <Input
+                                        valueStateText="Enter digits"
+                                        valueState="{/productWeightState}"
+                                        id="idProductWeightInput"
+                                        liveChange="onProductWeightInputLiveChange"
+                                        type="Number"
+                                        placeholder="Sayı giriniz"
+                                        value="{/productWeight}"
+                                    />
+
+                                    <Label text="Açıklama" />
+                                    <TextArea
+                                        value="{/productDescription}"
+                                        rows="8"
+                                    />
+                                </form:SimpleForm>
+                            </content>
+                        </WizardStep>
+                        <WizardStep
+                            id="idImageWizardStep"
+                            activate="onImageWizardStepActivate"
+                            title="Ürün Fotoğrafı"
+                            validated="false"
+                        >
+                            <MessageStrip
+                                class="sapUiSmallMarginBottom"
+                                text="Lütfen net ve geçerli bir fotoğraf yükleyiniz."
+                                showIcon="true"
+                            />
+                            <Text
+                                text="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas repellat dolorum blanditiis neque eum beatae soluta, sunt culpa non provident.
+"
+                            />
+
+                            <form:SimpleForm
+                                editable="true"
+                                layout="ResponsiveGridLayout"
+                            >
+                                <form:content>
+                                    <Label text="Fotoğraf URL" />
+                                    <Input
+                                        value=""
+                                        placeholder="https://..."
+                                        type="Url"
+                                        valueStateText=""
+                                    />
+                                    <Label text="Üretilme Tarihi" />
+                                    <DatePicker
+                                        id="idManufacturingDateDatePicker"
+                                        displayFormat="short"
+                                        value="{/manufacturingDate}"
+                                    />
+                                    <SegmentedButton
+                                        selectedKey="{/availabilityType}"
+                                    >
+                                        <items>
+                                            <SegmentedButtonItem
+                                                key="1"
+                                                text="Mağaza"
+                                            />
+                                            <SegmentedButtonItem
+                                                key="2"
+                                                text="Depo"
+                                            />
+                                            <SegmentedButtonItem
+                                                key="3"
+                                                text="Yolda"
+                                            />
+                                        </items>
+                                    </SegmentedButton>
+                                </form:content>
+                            </form:SimpleForm>
+                        </WizardStep>
+                        <WizardStep
+                        id="idReviewWizardStep">
+                    </WizardStep>
+                    </steps>
+                </Wizard>
             </HBox>
         </content>
+        <footer>
+            <Bar>
+                <contentRight>
+                    <Button
+                        text="Submit"
+                        press="onSubmitButtonPress"
+                    />
+                    <Button
+                        text="Cancel"
+                        press="onCancelButtonPress"
+                    />
+                </contentRight>
+            </Bar>
+        </footer>
     </Page>
 </mvc:View>

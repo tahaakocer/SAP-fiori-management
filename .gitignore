@@ -13,3 +13,4 @@ package-lock.json
 ui5-local.yaml
 ui5-mock.yaml
 ui5.yaml
+manifest.json

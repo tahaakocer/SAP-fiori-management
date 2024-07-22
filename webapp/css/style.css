@@ -1,1 +1,10 @@
-/* Enter your custom styles here */
+/* Enter your custom styles here */.fullHeight {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.fixedHeight {
+    flex: 1;
+    overflow: auto;
+} 

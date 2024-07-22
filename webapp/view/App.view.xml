@@ -5,10 +5,5 @@
     xmlns="sap.m"
 >
     <App id="idApp" />
-    <HBox height="100%">
-        <mvc:View
-            viewName="com.solvia.management.view.Aside"
-            type="XML"
-        />
-    </HBox>
+
 </mvc:View>

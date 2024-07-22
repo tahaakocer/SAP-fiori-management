@@ -6,7 +6,7 @@
     height="100%"
     busyIndicatorDelay="0"
 >
-    <Page title="Çalışan Ekle">
+    <Page showHeader="false">
         <content>
             <HBox height="100%">
                 <mvc:View
