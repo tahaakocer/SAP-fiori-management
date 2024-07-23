@@ -12,7 +12,6 @@
         id="idWizardContentPage"
         showHeader="false"
         showNavButton="true"
-   
     >
         <content>
             <HBox height="100%">
@@ -48,8 +47,10 @@
                                     width="100%"
                                 >
                                     <SegmentedButton
+                                        id="idSegmentedButton"
                                         width="450px"
                                         selectionChange="onSegmentedButtonSelectionChange"
+                                        selectedKey="{type}"
                                     >
                                         <items>
                                             <SegmentedButtonItem
@@ -75,9 +76,10 @@
                         </WizardStep>
                         <WizardStep
                             id="idProductInfoWizardStep"
-                            validated="true"
+                            validated="false"
                             title="Ürün Bilgileri"
                             activate="onWizardStepActivate"
+                            
                         >
                             <content>
                                 <MessageStrip
@@ -98,30 +100,31 @@
                                         required="true"
                                     />
                                     <Input
-                                        valueStateText="Enter 6 symbols or more"
-                                        valueState="{/productNameState}"
-                                        id="idProductNameInput"
-                                        liveChange="onProductNameInputLiveChange"
+                                        valueStateText="6 veya daha fazla karakter giriniz"
+                                        valueState="{globalModel>/productTitleState}"
+                                        id="idTitleInput"
                                         placeholder="En az 6 karakter giriniz"
-                                        value="{/productName}"
+                                        liveChange=".onInputLiveChange"
+                                        value="{title}"
                                     />
                                     <Label
                                         text="Fiyat"
                                         required="true"
                                     />
                                     <Input
-                                        valueStateText="Enter digits"
-                                        valueState="{/productWeightState}"
-                                        id="idProductWeightInput"
-                                        liveChange="onProductWeightInputLiveChange"
+                                    valueStateText="Sadece sayı giriniz"
+                                    valueState="{globalModel>/productPriceState}"
+                                        id="idPriceInput"
                                         type="Number"
                                         placeholder="Sayı giriniz"
-                                        value="{/productWeight}"
+                                        liveChange=".onInputLiveChange"
+                                        value="{price}"
                                     />
 
                                     <Label text="Açıklama" />
                                     <TextArea
-                                        value="{/productDescription}"
+                                        id="idDescriptionTextArea"
+                                        value="{description}"
                                         rows="8"
                                     />
                                 </form:SimpleForm>
@@ -150,20 +153,20 @@
                                 <form:content>
                                     <Label text="Fotoğraf URL" />
                                     <Input
-                                        value=""
+                                        id="idImageUrlInput"
+                                        value="{imageUrl}"
                                         placeholder="https://..."
                                         type="Url"
                                         valueStateText=""
                                     />
                                     <Label text="Üretilme Tarihi" />
                                     <DatePicker
-                                        id="idManufacturingDateDatePicker"
+                                        id="idMfcDateDatePicker"
                                         displayFormat="short"
-                                        value="{/manufacturingDate}"
+                                        value="{mfcDate}"
                                     />
-                                    <SegmentedButton
-                                        selectedKey="{/availabilityType}"
-                                    >
+                                    <SegmentedButton selectedKey="{state}"
+                                    id="idStateSegmentedButton">
                                         <items>
                                             <SegmentedButtonItem
                                                 key="1"
@@ -182,9 +185,7 @@
                                 </form:content>
                             </form:SimpleForm>
                         </WizardStep>
-                        <WizardStep
-                        id="idReviewWizardStep">
-                    </WizardStep>
+                        <WizardStep id="idReviewWizardStep" />
                     </steps>
                 </Wizard>
             </HBox>
