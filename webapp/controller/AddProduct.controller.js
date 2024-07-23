@@ -73,11 +73,6 @@ sap.ui.define([
                 MessageToast.show("Lütfen gerekli alanları doldurunuz!");
             }
         },
-
-        onSegmentedButtonSelectionChange: function (oEvent) { },
-
-        onImageWizardStepActivate: function (oEvent) { },
-
         validateInfoStep: function () {
             var globalModel = this.getOwnerComponent().getModel("globalModel");
             var title = this.byId("idTitleInput").getValue();
@@ -109,7 +104,6 @@ sap.ui.define([
         },
 
         onInputLiveChange: function (oEvent) {
-            this.validateInfoStep();
         },
 
         _handleMessageBoxOpen: function (sMessage, sMessageBoxType) {
@@ -117,7 +111,7 @@ sap.ui.define([
                 actions: [MessageBox.Action.YES, MessageBox.Action.NO],
                 onClose: function (oAction) {
                     if (oAction === MessageBox.Action.YES) {
-                        this._clearFormFields();    
+                        this._clearFormFields();
                         this._wizard.discardProgress(this.byId("idProductTypeWizardStep"));
                     }
                 }.bind(this)
@@ -138,6 +132,15 @@ sap.ui.define([
 
         onCancelButtonPress: function (oEvent) {
             this._handleMessageBoxOpen("Ürün ekleme işlemini iptal etmek istiyor musunuz?", "warning");
+        },
+
+        onTitleInputLiveChange: function (oEvent) {
+            this.validateInfoStep();
+
+        },
+
+        onPriceInputLiveChange: function (oEvent) {
+            this.validateInfoStep();
         }
     });
 });

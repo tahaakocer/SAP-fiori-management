@@ -1,6 +1,8 @@
 <mvc:View
     controllerName="com.solvia.management.controller.AddEmployee"
     xmlns:mvc="sap.ui.core.mvc"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:u="sap.ui.unified"
     xmlns="sap.m"
     displayBlock="true"
     height="100%"
@@ -13,8 +15,243 @@
                     viewName="com.solvia.management.view.Aside"
                     type="XML"
                 />
-                <Text text="BURASI ÇALIŞAN EKLEME SAYFASI" />
+                <Wizard
+                    id="idCreateEmployeeWizard"
+                    class="sapUiResponsivePadding--header sapUiResponsivePadding--content"
+                    complete="onWizardComplete"
+                    width="100%"
+                >
+                    <steps>
+                        <WizardStep
+                            id="idInfoWizardStep"
+                            validated="false"
+                            title="Çalışan Bilgileri Giriş"
+                            activate="onWizardStepInfoActivate"
+                        >
+                            <content>
+                                <MessageStrip
+                                    class="sapUiSmallMarginBottom"
+                                    text="Çalışan kimlik bilgilerini büyük küçük harfe duyarlı, düzgün ve eksiksiz bir şekilde giriniz."
+                                    showIcon="true"
+                                />
+                                <Text
+                                    text="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita veniam recusandae reprehenderit itaque nisi. Animi est deleniti voluptatem excepturi. Id quas labore unde, perspiciatis cupiditate repellendus sit pariatur debitis quam praesentium, harum, eum tempora doloribus.
+"
+                                />
+                                <form:SimpleForm
+                                    editable="true"
+                                    layout="ResponsiveGridLayout"
+                                >
+                                    <Label
+                                        text="Adı"
+                                        required="true"
+                                    />
+                                    <Input
+                                        valueStateText="En az 2 karakter girmelisiniz"
+                                        valueState="{globalModel>/employeeNameState}"
+                                        id="idNameInput"
+                                        placeholder="Bilge"
+                                        liveChange="onInputLiveChange"
+                                        value="{name}"
+                                    />
+                                    <Label
+                                        text="Soy Adı"
+                                        required="true"
+                                    />
+                                    <Input
+                                        valueStateText="En az 2 karakter girmelisiniz"
+                                        valueState="{globalModel>/employeeSurnameState}"
+                                        id="idSurnameInput"
+                                        placeholder="Erdem"
+                                        liveChange=".onSurnameInputLiveChange"
+                                        value="{surname}"
+                                    />
+
+                                    <Label text="Doğum Tarihi" />
+                                    <DatePicker
+                                        valueStateText="Bu alan boş bırakılamaz"
+                                        valueState="{globalModel>/employeeDateState}"
+                                        id="idBirthdayDatePicker"
+                                        displayFormat="short"
+                                       
+                                    
+                                        value="{birthday}"
+                                    />
+                                </form:SimpleForm>
+                            </content>
+                        </WizardStep>
+
+                        <WizardStep
+                            id="idContactWizardStep"
+                            title="İletişim Bilgileri"
+                            activate="onWizardStepContactActivate"
+                        >
+                            <content>
+                                <MessageStrip
+                                    class="sapUiSmallMarginBottom"
+                                    text="Lütfen çalışan iletişim bilgilerini düzgün ve eksiksiz bir şekilde doldurunuz."
+                                    showIcon="true"
+                                />
+                                <Text
+                                    width="200%"
+                                    class="sapUiSmallMarginBottom"
+                                    text="Çalışan iletişim bilgileri girilirken alan kodu kullanmayınız. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam non excepturi exercitationem rerum odit maiores ratione. Molestiae modi nostrum rem!"
+                                />
+                                <form:SimpleForm
+                                    editable="true"
+                                    layout="ResponsiveGridLayout"
+                                >
+                                    <Label
+                                        text="Telefon Numarası"
+                                        required="true"
+                                    />
+                                    <Input
+                                        valueState="{globalModel>/employeeNumState}"
+                                        valueStateText="Sadece sayı giriniz"
+                                        id="idNumberInput"
+                                        placeholder="05xxxxxxxxx"
+                                        type="Tel"
+                                        liveChange="onNumberInputLiveChange"
+                                        value="{number}"
+                                    />
+                                    <Label
+                                        text="E-mail"
+                                        required="true"
+                                    />
+                                    <Input
+                                        valueState="{globalModel>/employeeMailState}"
+                                        valueStateText="Bu alanı boş bırakmayınız!"
+                                        id="idEmailInput"
+                                        placeholder="xxx@xxxxxx.com"
+                                        type="Email"
+                                        liveChange="onEmailInputLiveChange"
+                                        value="{email}"
+                                    />
+                                </form:SimpleForm>
+                            </content>
+                        </WizardStep>
+
+                        <WizardStep
+                            id="idDepartmentWizardStep"
+                            activate="onWizardStepDepartmentActivate"
+                            title="Departman Bilgileri"
+                            validated="false"
+                        >
+                            <MessageStrip
+                                class="sapUiSmallMarginBottom"
+                                text="Lütfen çalışan departman bilgilerini düzgün ve eksiksizce doldurunuz."
+                                showIcon="true"
+                            />
+                            <Text
+                                text="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas repellat dolorum blanditiis neque eum beatae soluta, sunt culpa non provident.
+"
+                            />
+
+                            <form:SimpleForm
+                                editable="true"
+                                layout="ResponsiveGridLayout"
+                            >
+                              <HBox
+                                    alignItems="Center"
+                                    justifyContent="Center"
+                                    width="100%"
+                                >
+                                <SegmentedButton
+                                    selectedKey="{department}"
+                                    width="550px"
+                                    id="idDepartmentSegmentedButton"
+                                >
+                                    <items>
+                                        <SegmentedButtonItem
+                                            key="1"
+                                            text="Admin"
+                                        />
+                                        <SegmentedButtonItem
+                                            key="2"
+                                            text="Finans"
+                                        />
+                                        <SegmentedButtonItem
+                                            key="3"
+                                            text="Bakım"
+                                        />
+                                        <SegmentedButtonItem
+                                            key="4"
+                                            text="Tedarik"
+                                        />
+                                        <SegmentedButtonItem
+                                            key="5"
+                                            text="Pazarlama"
+                                        />
+                                        <SegmentedButtonItem
+                                            key="6"
+                                            text="Üretim"
+                                        />
+                                    </items>
+                                </SegmentedButton>
+                                </HBox>
+                                <Label
+                                    text="Maaş"
+                                    required="true"
+                                />
+                                <Input
+                                    valueState="{globalModel>/employeeSalaryState}"
+                                    id="idSalaryInput"
+                                    placeholder="17002.12"
+                                    type="Number"
+                                    liveChange="onSalaryInputLiveChange"
+                                    valueStateText="Sadece sayı giriniz"
+                                    value="{salary}"
+                                />
+                            </form:SimpleForm>
+                        </WizardStep>
+                        <WizardStep
+                            id="idImageWizardStep"
+                            activate="onWizardStepImageActivate"
+                            title="Çalışan Fotoğrafı"
+                            validated="false"
+                        >
+                            <MessageStrip
+                                class="sapUiSmallMarginBottom"
+                                text="Lütfen sadece png veya jpeg formatında, geçerli bir fotoğraf yükleyiniz."
+                                showIcon="true"
+                            />
+                            <Text
+                                text="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas repellat dolorum blanditiis neque eum beatae soluta, sunt culpa non provident.
+"
+                            />
+
+                            <form:SimpleForm
+                                editable="true"
+                                layout="ResponsiveGridLayout"
+                            >
+                                <Label text="Çalışan Fotoğrafı" />
+                                <u:FileUploader
+                                    width="100%"
+                                    tooltip="Çalışan profil fotoğrafını yerel sunucuya yükleyin"
+                                    style="Emphasized"
+                                    placeholder="Yüklemek için fotoğraf seçiniz..."
+                                />
+                            </form:SimpleForm>
+                        </WizardStep>
+
+                        <WizardStep id="idReviewWizardStep" />
+                    </steps>
+                </Wizard>
             </HBox>
         </content>
+        <footer>
+            <Bar>
+                <contentRight>
+                    <Button
+                        text="Submit"
+                        press="onSubmitButtonPress"
+                    />
+                    <Button
+                        text="Cancel"
+                        press="onCancelButtonPress"
+                    />
+                </contentRight>
+            </Bar>
+        </footer>
     </Page>
 </mvc:View>
