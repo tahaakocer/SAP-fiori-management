@@ -79,7 +79,6 @@
                             validated="false"
                             title="Ürün Bilgileri"
                             activate="onWizardStepActivate"
-                            
                         >
                             <content>
                                 <MessageStrip
@@ -112,8 +111,8 @@
                                         required="true"
                                     />
                                     <Input
-                                    valueStateText="Sadece sayı giriniz"
-                                    valueState="{globalModel>/productPriceState}"
+                                        valueStateText="Sadece sayı giriniz"
+                                        valueState="{globalModel>/productPriceState}"
                                         id="idPriceInput"
                                         type="Number"
                                         placeholder="Sayı giriniz"
@@ -121,10 +120,16 @@
                                         value="{price}"
                                     />
 
-                                    <Label text="Açıklama" />
+                                    <Label
+                                        text="Açıklama"
+                                        required="true"
+                                    />
                                     <TextArea
                                         id="idDescriptionTextArea"
                                         value="{description}"
+                                        valueStateText="En az 20 karakter giriniz."
+                                        valueState="{globalModel>/productDescriptionState}"
+                                        liveChange=".onInputLiveChange"
                                         rows="8"
                                     />
                                 </form:SimpleForm>
@@ -165,8 +170,10 @@
                                         displayFormat="short"
                                         value="{mfcDate}"
                                     />
-                                    <SegmentedButton selectedKey="{state}"
-                                    id="idStateSegmentedButton">
+                                    <SegmentedButton
+                                        selectedKey="{state}"
+                                        id="idStateSegmentedButton"
+                                    >
                                         <items>
                                             <SegmentedButtonItem
                                                 key="1"

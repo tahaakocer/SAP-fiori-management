@@ -1,11 +1,13 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "com/solvia/management/utils/Helper",
-    "sap/m/MessageToast"
+    "sap/m/MessageToast",
+    "sap/m/MessageBox"
 ], function (
     Controller,
     Helper,
-    MessageToast
+    MessageToast,
+    MessageBox
 ) {
     "use strict";
 
@@ -19,13 +21,10 @@ sap.ui.define([
             this._wizard = this.byId("idCreateProductWizard");
             this._oNavContainer = this.byId("idWizardNavContainer");
             this._oWizardContentPage = this.byId("idWizardContentPage");
-
-
         },
 
         onWizardComplete: function (oEvent) {
             this._oNavContainer.to(this.byId("idWizardReviewPage"));
-
         },
 
         onSubmitButtonPress: function (oEvent) {
@@ -47,7 +46,6 @@ sap.ui.define([
             var sState = iState.getSelectedKey();
             var sDate = iDate.getDateValue();
 
-            //Tarihin formasyonu tablo ile uyuşmayabilir hata çıkarsa unutma burayı
             var oEmpData = {
                 Title: sTitle,
                 Price: sPrice,
@@ -57,7 +55,7 @@ sap.ui.define([
                 Type: sType,
                 State: sState,
                 MfcDate: sDate
-            }
+            };
             console.log(oEmpData);
 
             if (Helper.validationForm(oEmpData)) {
@@ -70,37 +68,20 @@ sap.ui.define([
                         MessageToast.show("Ürün eklenemedi!");
                         console.error("Ürün eklenemedi!");
                     }
-                })
+                });
+            } else {
+                MessageToast.show("Lütfen gerekli alanları doldurunuz!");
             }
-
-
-
         },
 
-        onCancelButtonPress: function (oEvent) {
+        onSegmentedButtonSelectionChange: function (oEvent) { },
 
-        },
+        onImageWizardStepActivate: function (oEvent) { },
 
-        onSegmentedButtonSelectionChange: function (oEvent) {
-
-        },
-
-        onProductNameInputLiveChange: function (oEvent) {
-
-        },
-
-        onProductWeightInputLiveChange: function (oEvent) {
-
-        },
-        onImageWizardStepActivate: function (oEvent) {
-
-        },
         validateInfoStep: function () {
             var globalModel = this.getOwnerComponent().getModel("globalModel");
             var title = this.byId("idTitleInput").getValue();
             var price = parseInt(this.byId("idPriceInput").getValue());
-            var description = this.byId("idDescriptionTextArea");
-
 
             if (isNaN(price)) {
                 this._wizard.setCurrentStep(this.byId("idProductInfoWizardStep"));
@@ -113,7 +94,7 @@ sap.ui.define([
                 this._wizard.setCurrentStep(this.byId("idProductInfoWizardStep"));
                 globalModel.setProperty("/productTitleState", "Error");
             } else {
-                globalModel.setProperty("/productTitletate", "None");
+                globalModel.setProperty("/productTitleState", "None");
             }
 
             if (title.length < 6 || isNaN(price)) {
@@ -122,12 +103,41 @@ sap.ui.define([
                 this._wizard.validateStep(this.byId("idProductInfoWizardStep"));
             }
         },
+
         onWizardStepActivate: function (oEvent) {
             this.validateInfoStep();
         },
-		onInputLiveChange: function(oEvent) {
-            this.validateInfoStep();
 
-		}
+        onInputLiveChange: function (oEvent) {
+            this.validateInfoStep();
+        },
+
+        _handleMessageBoxOpen: function (sMessage, sMessageBoxType) {
+            MessageBox[sMessageBoxType](sMessage, {
+                actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+                onClose: function (oAction) {
+                    if (oAction === MessageBox.Action.YES) {
+                        this._clearFormFields();    
+                        this._wizard.discardProgress(this.byId("idProductTypeWizardStep"));
+                    }
+                }.bind(this)
+            });
+        },
+
+        _clearFormFields: function () {
+            var oView = this.getView();
+
+            oView.byId("idSegmentedButton").setSelectedKey("");
+            oView.byId("idTitleInput").setValue("");
+            oView.byId("idPriceInput").setValue("");
+            oView.byId("idDescriptionTextArea").setValue("");
+            oView.byId("idImageUrlInput").setValue("");
+            oView.byId("idStateSegmentedButton").setSelectedKey("");
+            oView.byId("idMfcDateDatePicker").setDateValue(null);
+        },
+
+        onCancelButtonPress: function (oEvent) {
+            this._handleMessageBoxOpen("Ürün ekleme işlemini iptal etmek istiyor musunuz?", "warning");
+        }
     });
 });
