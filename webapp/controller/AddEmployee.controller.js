@@ -15,6 +15,7 @@ sap.ui.define([
 		onInit: function () {
 			this._wizard = this.byId("idCreateEmployeeWizard");
 			var globalModel = this.getOwnerComponent().getModel("globalModel");
+			this._sFileContent = null;
 
 
 		},
@@ -62,8 +63,10 @@ sap.ui.define([
 			var sEmail = this.byId("idEmailInput").getValue();
 			var sDepartment = this.byId("idDepartmentSegmentedButton").getSelectedKey();
 			var sSalary = this.byId("idSalaryInput").getValue();
-			var sImage = this.byId("idFileUploader").getValue();
-			console.log(sImage);
+			var oFileUploader = this.byId("idFileUploader");
+
+			
+			console.log(this._sFileContent);
 
 
 		},
@@ -75,6 +78,34 @@ sap.ui.define([
 
 		onWizardStepImageActivate: function (oEvent) {
 
+		},
+
+		onFileUploaderUploadComplete: function (oEvent) {
+			var sResponse = oEvent.getParameter("response"),
+				aRegexResult = /\d{4}/.exec(sResponse),
+				iHttpStatusCode = aRegexResult && parseInt(aRegexResult[0]),
+				sMessage;
+
+			if (sResponse) {
+				sMessage = iHttpStatusCode === 200 ? sResponse + " (Upload Success)" : sResponse + " (Upload Error)";
+				MessageToast.show(sMessage);
+			}
+		},
+
+		onFileUploaderChange: function (oEvent) {
+			var oFileUploader = oEvent.getSource();
+			var aFiles = oEvent.getParameter("files");
+			if (aFiles && aFiles.length > 0) {
+				var oFile = aFiles[0];
+				var reader = new FileReader();
+				reader.onload = function (e) {
+					var vContent = e.target.result;
+					this._sFileContent = vContent.split(",")[1];
+					const byteString = atob(this._sFileContent);
+					console.log(byteString);
+				}.bind(this);
+				reader.readAsDataURL(oFile);
+			}
 		}
 	});
 });

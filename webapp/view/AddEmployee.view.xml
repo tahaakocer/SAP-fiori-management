@@ -227,8 +227,11 @@
                                 <Label text="Çalışan Fotoğrafı" />
                                 <u:FileUploader
                                     width="100%"
+                                    id="idFileUploader"
                                     tooltip="Çalışan profil fotoğrafını yerel sunucuya yükleyin"
                                     style="Emphasized"
+                                     change="onFileUploaderChange"
+                                    uploadComplete="onFileUploaderUploadComplete"
                                     placeholder="Yüklemek için fotoğraf seçiniz..."
                                 />
                             </form:SimpleForm>
