@@ -1,11 +1,11 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "com/solvia/management/utils/Helper",
+    "com/solvia/management/utils/Validations",
     "sap/m/MessageToast",
     "sap/m/MessageBox"
 ], function (
     Controller,
-    Helper,
+    Validations,
     MessageToast,
     MessageBox
 ) {
@@ -49,7 +49,7 @@ sap.ui.define([
             };
             console.log(oEmpData);
 
-            if (Helper.validationForm(oEmpData)) {
+            if (Validations.validationForm(oEmpData)) {
                 oDataModel.create("/productSet", oEmpData, {
                     method: "POST",
                     success: function (data) {
@@ -66,7 +66,7 @@ sap.ui.define([
         },
 
         onWizardStepActivate: function (oEvent) {
-            Helper.validateProductInfoStep(this);
+            Validations.validateProductInfoStep(this);
         },
         _handleMessageBoxOpen: function (sMessage, sMessageBoxType) {
             MessageBox[sMessageBoxType](sMessage, {
@@ -97,12 +97,12 @@ sap.ui.define([
         },
 
         onTitleInputLiveChange: function (oEvent) {
-            Helper.validateProductInfoStep(this);
+            Validations.validateProductInfoStep(this);
 
         },
 
         onPriceInputLiveChange: function (oEvent) {
-            Helper.validateProductInfoStep(this);
+            Validations.validateProductInfoStep(this);
         }
     });
 });

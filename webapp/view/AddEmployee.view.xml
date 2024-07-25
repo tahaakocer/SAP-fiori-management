@@ -25,7 +25,7 @@
                         <WizardStep
                             id="idInfoWizardStep"
                             validated="false"
-                            title="Çalışan Bilgileri Giriş"
+                            title="Çalışan Ekleme Giriş"
                             activate="onWizardStepInfoActivate"
                         >
                             <content>
@@ -206,7 +206,6 @@
                         </WizardStep>
                         <WizardStep
                             id="idImageWizardStep"
-                            activate="onWizardStepImageActivate"
                             title="Çalışan Fotoğrafı"
                             validated="false"
                         >
@@ -230,7 +229,7 @@
                                     id="idFileUploader"
                                     tooltip="Çalışan profil fotoğrafını yerel sunucuya yükleyin"
                                     style="Emphasized"
-                                     change="onFileUploaderChange"
+                                    change="onFileUploaderChange"
                                     uploadComplete="onFileUploaderUploadComplete"
                                     placeholder="Yüklemek için fotoğraf seçiniz..."
                                 />

@@ -1,11 +1,11 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"com/solvia/management/utils/Helper",
+	"com/solvia/management/utils/Validations",
 	"sap/m/MessageToast",
 	"sap/m/MessageBox"
 ], function (
 	Controller,
-	Helper,
+	Validations,
 	MessageToast,
 	MessageBox,
 
@@ -25,39 +25,37 @@ sap.ui.define([
 		},
 		//=======================INFO STEP ACTİVATE AND LIVECHANGES=======================
 		onWizardStepInfoActivate: function (oEvent) {
-			Helper.validateInfoStep(this);
+			Validations.validateInfoStep(this);
 		},
 		onInputLiveChange: function (oEvent) {
-			Helper.validateInfoStep(this);
+			Validations.validateInfoStep(this);
 		},
 
 		onSurnameInputLiveChange: function (oEvent) {
-			Helper.validateInfoStep(this);
+			Validations.validateInfoStep(this);
 		},
 		//=====================CONTACT STEP ACTIVATE AND LIVECHANGES======================
 		onWizardStepContactActivate: function (oEvent) {
-			Helper.validateContactStep(this);
+			Validations.validateContactStep(this);
 		},
 		onNumberInputLiveChange: function (oEvent) {
-			Helper.validateContactStep(this);
+			Validations.validateContactStep(this);
 		},
 		onEmailInputLiveChange: function (oEvent) {
-			Helper.validateContactStep(this);
+			Validations.validateContactStep(this);
 		},
 		//====================DEPARTMENT STEP ACTİVATE AND LIVECHANGES====================
 
 		onWizardStepDepartmentActivate: function (oEvent) {
-			Helper.validateDepartmentStep(this);
+			Validations.validateDepartmentStep(this);
 		},
 		onSalaryInputLiveChange: function (oEvent) {
-			Helper.validateDepartmentStep(this);
-
+			Validations.validateDepartmentStep(this);
 		},
-
-
 		onWizardComplete: function (oEvent) {
 
 		},
+		//=====================================BUTTONS=====================================
 		onSubmitButtonPress: function (oEvent) {
 			var oDataModel = this.getOwnerComponent().getModel("myOdata");
 			var sName = this.byId("idNameInput").getValue();
@@ -80,7 +78,7 @@ sap.ui.define([
 				Pimage: this._sFileContent
 			}
 
-			if (Helper.validationForm(oAddEmpData)) {
+			if (Validations.validationForm(oAddEmpData)) {
 				oDataModel.create("/employeeSet", oAddEmpData, {
 					method: "POST",
 					success: function (data) {
@@ -123,7 +121,7 @@ sap.ui.define([
 			this._handleMessageBoxOpen("Çalışan ekleme işlemini iptal etmek istiyor musunuz?", "warning");
 
 		},
-
+		// =============================FILE UPLOAD METHODS=============================
 		onFileUploaderUploadComplete: function (oEvent) {
 			var sResponse = oEvent.getParameter("response"),
 				aRegexResult = /\d{4}/.exec(sResponse),

@@ -54,7 +54,8 @@
                     icon="sap-icon://menu"
                 >
                     <tnt:NavigationListItem text="Ürünler" />
-                    <tnt:NavigationListItem text="Çalışanlar" />
+                    <tnt:NavigationListItem text="Çalışanlar" 
+                    key="tableEmployee"/>
                     <tnt:NavigationListItem text="Adresler" />
                 </tnt:NavigationListItem>
                 <tnt:NavigationListItem

@@ -38,6 +38,9 @@ sap.ui.define([
                 case "addAddress":
                     router.navTo("addAddress");
                     break;
+                case "tableEmployee":
+                    router.navTo("tableEmployee");
+                    break;
                 default:
                     router.navTo("home");
                     break;
