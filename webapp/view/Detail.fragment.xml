@@ -1,0 +1,48 @@
+<c:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:c="sap.ui.core"
+>
+    <Dialog
+        id="idDialog"
+        title="Contact Details"
+        draggable="true"
+        class="customDialog"
+    >
+        <content>
+            <VBox class="customContent">
+                <Avatar
+                    src="{= ${globalModel>/contactDetails/Pimage} ? 'data:image/jpeg;base64,' + ${globalModel>/contactDetails/Pimage} : ''}"
+                    press="onAvatarPress"
+                    class="detailAvatar"
+                />
+                <Text
+                    text="{globalModel>/contactDetails/Name} {globalModel>/contactDetails/Surname}"
+                    class="detailText"
+                />
+
+                <Label text="Telefon Numarası" />
+                <Input
+                    id="idPhoneNumberInput"
+                    type="Tel"
+                    editable="false"
+                    value="{path: 'globalModel>/contactDetails/PhoneNumber', formatter: '.formatter.formatPhoneNum'}"
+                    class="customInput"
+                />
+                <Label text="Email" />
+                <Input
+                    id="idEmailInput"
+                    type="Text"
+                    editable="false"
+                    value="{globalModel>/contactDetails/Email}"
+                    class="customInput"
+                />
+            </VBox>
+        </content>
+        <endButton>
+            <Button
+                text="Cancel"
+                press=".onCancelButtonPress"
+            />
+        </endButton>
+    </Dialog>
+</c:FragmentDefinition>

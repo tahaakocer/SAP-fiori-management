@@ -4,20 +4,23 @@ sap.ui.define([
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
 	"com/solvia/management/utils/Helper",
-	"com/solvia/management/utils/Formatter"
+	"com/solvia/management/utils/Formatter",
+	"sap/ui/core/Fragment"
+	
 ], function (
 	Controller,
 	JSONModel,
 	Filter,
 	FilterOperator,
 	Helper,
-	Formatter
+	Formatter,
+	Fragment
 ) {
 	"use strict";
 
 	return Controller.extend("com.solvia.management.controller.TableEmployee", {
 		formatter: Formatter,
-	
+
 		/**
 		 * @override
 		 */
@@ -37,7 +40,7 @@ sap.ui.define([
 
 			this._oGlobalFilter = null;
 			this._oPriceFilter = null;
-			
+
 			Helper.refreshTable(this.getOwnerComponent());
 		},
 		// ======================================================================================
@@ -96,6 +99,50 @@ sap.ui.define([
 
 		onAvatarPress: function (oEvent) {
 
+		},
+		onContactButtonPress: function (oEvent) {
+			var oDataModel = this.getOwnerComponent().getModel("myOdata");
+			var globalModel = this.getOwnerComponent().getModel("globalModel");
+			var oView = this.getView();
+
+			var oButton = oEvent.getSource();
+			var oBindingContext = oButton.getBindingContext("globalModel");
+			var oData = oBindingContext.getObject();
+
+			globalModel.setProperty("/contactDetails", {
+				Name: oData.Name,
+				Surname: oData.Surname,
+				Email: oData.Email,
+				PhoneNumber: oData.PhoneNumber,
+				Pimage: oData.Pimage
+			});
+			console.log(globalModel.getProperty("/contactDetails"));
+
+			if (!this._oDialog) {
+				Fragment.load({
+					name: "com.solvia.management.view.Detail",
+					controller: this
+				}).then(function (oDialog) {
+					this._oDialog = oDialog;
+					oView.addDependent(this._oDialog);
+					this._oDialog.open();
+				}.bind(this));
+			} else {
+				this._oDialog.open();
+			}
+
+
+		},
+
+		onCancelButtonPress: function(oEvent) {
+			this._oDialog.close();
+		},
+
+		onEditButtonPress: function(oEvent) {
+			
 		}
+
+
+
 	});
 });

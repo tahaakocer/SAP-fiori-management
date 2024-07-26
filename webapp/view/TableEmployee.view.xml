@@ -97,7 +97,7 @@
                                 />
                             </t:template>
                         </t:Column>
-                        <t:Column width="9rem">
+                        <t:Column width="7rem">
                             <Label text="Departman" />
                             <t:template>
                                 <Text
@@ -108,12 +108,36 @@
                             </t:template>
                         </t:Column>
                         <t:Column width="7.5rem">
-                            <Label text="Telefon" />
+                            <Label text="Doğum Tarihi" />
                             <t:template>
                                 <Input
-                                    value="{path: 'globalModel>PhoneNumber',formatter: '.formatter.formatPhoneNum'}"
+                                    type="Datetime"
+                                    value="{path: 'globalModel>Birthday', formatter: '.formatter.formatDate'}"
                                     editable="false"
-                                    class="customText"
+                                />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="7.5rem">
+                            <Label text="İletişim Bilgileri" />
+                            <t:template>
+                                <Button
+                                    icon="sap-icon://contacts"
+                                    type="Emphasized"
+                                    text="İletişim"
+                                    press="onContactButtonPress"
+                                    class="contactButton"
+                                />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="7.5rem">
+                            <Label text="Düzenle" />
+                            <t:template>
+                                <Button
+                                    icon="sap-icon://edit"
+                                    type="Neutral"
+                                    text="Düzenle"
+                                    press="onEditButtonPress"
+                                    class="contactButton"
                                 />
                             </t:template>
                         </t:Column>

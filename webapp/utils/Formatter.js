@@ -28,6 +28,15 @@ sap.ui.define([], function () {
                 default:
                     return "ERROR";
             }
+        },
+        formatDate: function (date) {
+            if (!date) {
+                return "";
+            }
+            var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+                pattern: "dd/MM/yyyy"
+            });
+            return oDateFormat.format(new Date(date));
         }
     };
 });
