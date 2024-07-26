@@ -57,6 +57,83 @@
 }
 
 .customInput {
-    margin-bottom: 150px;
+    margin-top: 50px;
     /* Inputlar arasında boşluk */
+}
+.centeredFormVBox {
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.formSimpleForm {
+    width: 100%;
+    max-width: 1600px;
+    /* Increased max-width */
+}
+
+.editContentHBox {
+    width: 100%;
+    max-width: 1200px;
+    /* Increased max-width */
+    padding: 40px;
+    /* Increased padding */
+}
+
+.editAvatarVBox {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.editAvatar {
+    width: 300px;
+    /* Increased size */
+    height: 300px;
+    /* Increased size */
+}
+
+.editFormVBox {
+    flex: 2;
+    padding-left: 40px;
+    /* Increased padding */
+}
+
+.editLabel {
+    margin-top: 12px;
+    /* Increased margin */
+    margin-bottom: 12px;
+    /* Increased margin */
+    font-weight: bold;
+    font-size: 1.5rem;
+    /* Increased font size */
+}
+
+.editInput {
+    width: 100%;
+    max-width: 600px;
+    /* Increased max-width */
+    margin-bottom: 20px;
+    /* Increased margin */
+    font-size: 1.2rem;
+    /* Increased font size */
+}
+
+.editSelect {
+    width: 100%;
+    max-width: 600px;
+    /* Increased max-width */
+    font-size: 1.2rem;
+    /* Increased font size */
+}
+
+.editToolbarText {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.6rem;
+    /* Increased font size */
+    font-weight: bolder;
+    margin-top: 20px;
+    margin-left: 20px;
+    text-align: center;
 }

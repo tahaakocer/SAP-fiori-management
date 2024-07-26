@@ -6,7 +6,7 @@ sap.ui.define([
 	"com/solvia/management/utils/Helper",
 	"com/solvia/management/utils/Formatter",
 	"sap/ui/core/Fragment"
-	
+
 ], function (
 	Controller,
 	JSONModel,
@@ -134,12 +134,37 @@ sap.ui.define([
 
 		},
 
-		onCancelButtonPress: function(oEvent) {
+		onCancelButtonPress: function (oEvent) {
 			this._oDialog.close();
 		},
 
-		onEditButtonPress: function(oEvent) {
-			
+		onEditButtonPress: function (oEvent) {
+			var router = this.getOwnerComponent().getRouter();
+			var oDataModel = this.getOwnerComponent().getModel("myOdata");
+			var globalModel = this.getOwnerComponent().getModel("globalModel");
+
+
+			var oView = this.getView();
+			var oButton = oEvent.getSource();
+			var oBindingContext = oButton.getBindingContext("globalModel");
+			var oData = oBindingContext.getObject();
+			console.log(oData);
+
+			globalModel.setProperty("/edit", {
+				Id: oData.Id,
+				Name: oData.Name,
+				Surname: oData.Surname,
+				Salary: oData.Salary,
+				Department: oData.Department,
+				PhoneNumber: oData.PhoneNumber,
+				Birthday: oData.Date,
+				Email: oData.Email,
+				Pimage: oData.Pimage
+
+			});
+			console.log(globalModel.getProperty("/edit"));
+			router.navTo("edit");
+
 		}
 
 

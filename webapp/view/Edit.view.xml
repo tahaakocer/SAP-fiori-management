@@ -1,0 +1,173 @@
+<mvc:View
+    controllerName="com.solvia.management.controller.Edit"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:c="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    displayBlock="true"
+    height="100%"
+    busyIndicatorDelay="0"
+>
+    <Page showHeader="false">
+        <customHeader>
+            <Toolbar>
+                <content>
+                    <Text
+                        text="Çalışan Düzenleme"
+                        class="editToolbarText"
+                    />
+                </content>
+            </Toolbar>
+        </customHeader>
+
+        <content>
+            <VBox
+                class="centeredFormVBox"
+                justifyContent="Center"
+                alignItems="Center"
+                height="100%"
+            >
+                <f:SimpleForm
+                    class="formSimpleForm"
+                    layout="ResponsiveGridLayout"
+                >
+                    <f:content>
+                        <HBox
+                            justifyContent="Start"
+                            class="editContentHBox"
+                        >
+                            <VBox
+                                class="editAvatarVBox"
+                                alignItems="Center"
+                            >
+                                <Avatar
+                                    src="{= ${globalModel>/edit/Pimage} ? 'data:image/jpeg;base64,' + ${globalModel>/edit/Pimage} : ''}"
+                                    press="onAvatarPress"
+                                    class="editAvatar"
+                                    badgeIcon="sap-icon://edit"
+                                />
+                            </VBox>
+
+                            <VBox class="editFormVBox">
+                                <Label
+                                    text="Adı:"
+                                    class="editLabel"
+                                />
+                                <Input
+                                    value="{globalModel>/edit/Name}"
+                                    class="editInput"
+                                />
+
+                                <Label
+                                    text="Soyadı:"
+                                    class="editLabel"
+                                />
+                                <Input
+                                    value="{globalModel>/edit/Surname}"
+                                    class="editInput"
+                                />
+
+                                <Label
+                                    text="Maaş:"
+                                    class="editLabel"
+                                />
+                                <Input
+                                    value="{path: 'globalModel>/edit/Salary', formatter: '.formatter.formatSalary'}"
+                                    class="editInput"
+                                />
+
+                                <Label
+                                    text="Departman:"
+                                    class="editLabel"
+                                />
+                                <Select
+                                    selectedKey="{globalModel>/edit/Department}"
+                                    class="editSelect"
+                                >
+                                    <items>
+                                        <c:Item
+                                            key="1"
+                                            text="Admin"
+                                        />
+                                        <c:Item
+                                            key="2"
+                                            text="Finans"
+                                        />
+                                        <c:Item
+                                            key="3"
+                                            text="Bakım"
+                                        />
+                                        <c:Item
+                                            key="4"
+                                            text="Tedarik"
+                                        />
+                                        <c:Item
+                                            key="5"
+                                            text="Pazarlama"
+                                        />
+                                        <c:Item
+                                            key="6"
+                                            text="Üretim"
+                                        />
+                                    </items>
+                                </Select>
+
+                                <Label
+                                    text="Telefon Numarası:"
+                                    class="editLabel"
+                                />
+                                <Input
+                                    value="{path: 'globalModel>/edit/PhoneNumber', formatter: '.formatter.formatPhoneNum'}"
+                                    class="editInput"
+                                />
+
+                                <Label
+                                    text="Email:"
+                                    class="editLabel"
+                                />
+                                <Input
+                                    value="{globalModel>/edit/Email}"
+                                    type="Email"
+                                    class="editInput"
+                                />
+
+                                <Label
+                                    text="Doğum Tarihi:"
+                                    class="editLabel"
+                                />
+                                <DatePicker
+                                    value="{path: 'globalModel>/edit/Birthday', formatter: '.formatter.formatDate'}"
+                                    displayFormat="long"
+                                    class="editInput"
+                                />
+                            </VBox>
+                        </HBox>
+                    </f:content>
+                    <f:title>
+                        <c:Title
+                            level="H1"
+                            text="Çalışan Düzenle"
+                        />
+                    </f:title>
+                </f:SimpleForm>
+            </VBox>
+        </content>
+
+        <footer>
+            <Bar design="Footer">
+                <contentRight>
+                    <Button
+                        text="Kaydet"
+                        type="Success"
+                        press="onSavePress"
+                    />
+                    <Button
+                        text="İptal"
+                        type="Negative"
+                        press="onCancelPress"
+                    />
+                </contentRight>
+            </Bar>
+        </footer>
+    </Page>
+</mvc:View>
