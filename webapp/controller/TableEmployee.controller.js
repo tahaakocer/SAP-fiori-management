@@ -5,7 +5,8 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator",
 	"com/solvia/management/utils/Helper",
 	"com/solvia/management/utils/Formatter",
-	"sap/ui/core/Fragment"
+	"sap/ui/core/Fragment",
+	"sap/m/MessageToast"
 
 ], function (
 	Controller,
@@ -14,7 +15,8 @@ sap.ui.define([
 	FilterOperator,
 	Helper,
 	Formatter,
-	Fragment
+	Fragment,
+	MessageToast
 ) {
 	"use strict";
 
@@ -143,7 +145,6 @@ sap.ui.define([
 			var oDataModel = this.getOwnerComponent().getModel("myOdata");
 			var globalModel = this.getOwnerComponent().getModel("globalModel");
 
-
 			var oView = this.getView();
 			var oButton = oEvent.getSource();
 			var oBindingContext = oButton.getBindingContext("globalModel");
@@ -157,15 +158,35 @@ sap.ui.define([
 				Salary: oData.Salary,
 				Department: oData.Department,
 				PhoneNumber: oData.PhoneNumber,
-				Birthday: oData.Date,
+				Birthday: new Date(oData.Birthday), 
 				Email: oData.Email,
 				Pimage: oData.Pimage
-
 			});
 			console.log(globalModel.getProperty("/edit"));
 			router.navTo("edit");
+		},
+
+		onButtonDeletePress: function(oEvent) {
+			var oDataModel = this.getOwnerComponent().getModel("myOdata");
+			var oButton = oEvent.getSource();
+			var oBindingContext = oButton.getBindingContext("globalModel");
+			var oData = oBindingContext.getObject();
+			var url = `/employeeSet(Id='${oData.Id}')`;
+
+			oDataModel.remove(url,{
+				success: function() {
+					MessageToast.show("Çalışan başarıyla silindi.");
+				},
+				error: function() {
+					MessageToast.show("Çalışan silinirken bir hata oluştu.");
+					console.log("Çalışan silinirken bir hata oluştu.");
+				}
+			});
+			Helper.refreshTable(this.getOwnerComponent());
+		
 
 		}
+
 
 
 

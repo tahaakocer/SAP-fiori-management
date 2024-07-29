@@ -1,139 +1,128 @@
 .fullHeight {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .fixedHeight {
-    flex: 1;
-    overflow: auto;
-} 
+  flex: 1;
+  overflow: auto;
+}
 .customAvatar {
-    width: 4.5rem;
-    
-    height: 4.5rem;
-   
+  width: 4.5rem;
+
+  height: 4.5rem;
 }
 
 .customText {
-    font-size: 1rem;
-    text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-  
+  font-size: 1rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .customRowHeight .sapUiTableRowHdr {
-    height: 35rem;
-   
+  height: 35rem;
 }
 .contactButton {
-    margin-left: 9px;        
-
+  margin-left: 9px;
 }
 .customDialog .sapMDialogScrollCont {
-    padding: 20px;
-    /* Dialog çerçevesi ve içerik arasında boşluk */
+  padding: 20px;
 }
 
 .customContent {
-    align-items: center;
-    /* İçeriği ortalamak için */
+  align-items: center;
 }
 
 .detailAvatar {
-    width: 8rem;
-    height: 8rem;
-    margin-bottom: 20px;
-    /* Avatar ve diğer içerikler arasında boşluk */
+  width: 8rem;
+  height: 8rem;
+  margin-bottom: 20px;
 }
 
 .detailText {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.2rem;
-    font-weight: bolder;
-    margin-bottom: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+  font-weight: bolder;
+  margin-bottom: 25px;
 }
 
 .customInput {
-    margin-top: 50px;
-    /* Inputlar arasında boşluk */
+  margin-top: 50px;
 }
 .centeredFormVBox {
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .formSimpleForm {
-    width: 100%;
-    max-width: 1600px;
-    /* Increased max-width */
+  width: 100%;
+  max-width: 1600px;
 }
 
 .editContentHBox {
-    width: 100%;
-    max-width: 1200px;
-    /* Increased max-width */
-    padding: 40px;
-    /* Increased padding */
+  width: 100%;
+  max-width: 1200px;
+  padding: 40px;
 }
 
 .editAvatarVBox {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .editAvatar {
-    width: 300px;
-    /* Increased size */
-    height: 300px;
-    /* Increased size */
+  width: 300px;
+  height: 300px;
 }
 
 .editFormVBox {
-    flex: 2;
-    padding-left: 40px;
-    /* Increased padding */
+  flex: 2;
+  padding-left: 40px;
 }
 
 .editLabel {
-    margin-top: 12px;
-    /* Increased margin */
-    margin-bottom: 12px;
-    /* Increased margin */
-    font-weight: bold;
-    font-size: 1.5rem;
-    /* Increased font size */
+  margin-top: 12px;
+  margin-bottom: 12px;
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 
 .editInput {
-    width: 100%;
-    max-width: 600px;
-    /* Increased max-width */
-    margin-bottom: 20px;
-    /* Increased margin */
-    font-size: 1.2rem;
-    /* Increased font size */
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
 }
 
 .editSelect {
-    width: 100%;
-    max-width: 600px;
-    /* Increased max-width */
-    font-size: 1.2rem;
-    /* Increased font size */
+  width: 100%;
+  max-width: 600px;
+  font-size: 1.2rem;
 }
 
 .editToolbarText {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.6rem;
-    /* Increased font size */
-    font-weight: bolder;
-    margin-top: 20px;
-    margin-left: 20px;
-    text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.6rem;
+
+  font-weight: bolder;
+  margin-top: 20px;
+  margin-left: 20px;
+  text-align: center;
+}
+.hiddenFileUploader {
+  display: none;
+}
+
+.title {
+  font-weight: 20rem;
+  font-size: 2rem;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: white;
+  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
 }

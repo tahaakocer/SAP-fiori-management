@@ -20,10 +20,12 @@ sap.ui.define([], function () {
                 case "2":
                     return "FINANS";
                 case "3":
-                    return "TEDARİK";
+                    return "BAKIM";
                 case "4":
-                    return "PAZARLAMA";
+                    return "TEDARIK";
                 case "5":
+                    return "PAZARLAMA";
+                case "6":
                     return "ÜRETİM";
                 default:
                     return "ERROR";

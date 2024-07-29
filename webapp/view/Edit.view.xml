@@ -3,19 +3,24 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:c="sap.ui.core"
+    xmlns:u="sap.ui.unified"
     xmlns:f="sap.ui.layout.form"
     displayBlock="true"
     height="100%"
     busyIndicatorDelay="0"
 >
-    <Page showHeader="false">
+    <Page>
         <customHeader>
-            <Toolbar>
+            <Toolbar class="toolbarCenter">
                 <content>
-                    <Text
+                    <ToolbarSpacer />
+                    <Title
                         text="Çalışan Düzenleme"
-                        class="editToolbarText"
+                        level="H1"
+                        textAlign="Center"
+                        class= "title"
                     />
+                    <ToolbarSpacer />
                 </content>
             </Toolbar>
         </customHeader>
@@ -32,28 +37,43 @@
                     layout="ResponsiveGridLayout"
                 >
                     <f:content>
-                        <HBox
-                            justifyContent="Start"
-                            class="editContentHBox"
-                        >
+                        <HBox class="editContentHBox">
                             <VBox
                                 class="editAvatarVBox"
                                 alignItems="Center"
                             >
                                 <Avatar
+                                    id="idAvatar"
                                     src="{= ${globalModel>/edit/Pimage} ? 'data:image/jpeg;base64,' + ${globalModel>/edit/Pimage} : ''}"
                                     press="onAvatarPress"
                                     class="editAvatar"
                                     badgeIcon="sap-icon://edit"
                                 />
+                                <u:FileUploader
+                                    id="idFileUploader"
+                                    class="hiddenFileUploader"
+                                    change="onFileUploaderChange"
+                                />
                             </VBox>
 
                             <VBox class="editFormVBox">
+                                <Label
+                                    text="Id:"
+                                    class="editLabel"
+                                />
+                                <Input
+                                    id="idIdInput"
+                                    value="{globalModel>/edit/Id}"
+                                    class="editInput"
+                                    editable="false"
+                                    enabled="false"
+                                />
                                 <Label
                                     text="Adı:"
                                     class="editLabel"
                                 />
                                 <Input
+                                    id="idNameInput"
                                     value="{globalModel>/edit/Name}"
                                     class="editInput"
                                 />
@@ -63,6 +83,7 @@
                                     class="editLabel"
                                 />
                                 <Input
+                                    id="idSurnameInput"
                                     value="{globalModel>/edit/Surname}"
                                     class="editInput"
                                 />
@@ -72,6 +93,7 @@
                                     class="editLabel"
                                 />
                                 <Input
+                                    id="idSalaryInput"
                                     value="{path: 'globalModel>/edit/Salary', formatter: '.formatter.formatSalary'}"
                                     class="editInput"
                                 />
@@ -81,6 +103,7 @@
                                     class="editLabel"
                                 />
                                 <Select
+                                    id="idSelect"
                                     selectedKey="{globalModel>/edit/Department}"
                                     class="editSelect"
                                 >
@@ -117,6 +140,7 @@
                                     class="editLabel"
                                 />
                                 <Input
+                                    id="idPhoneNumbersInput"
                                     value="{path: 'globalModel>/edit/PhoneNumber', formatter: '.formatter.formatPhoneNum'}"
                                     class="editInput"
                                 />
@@ -125,7 +149,9 @@
                                     text="Email:"
                                     class="editLabel"
                                 />
+
                                 <Input
+                                    id="idEmailInput"
                                     value="{globalModel>/edit/Email}"
                                     type="Email"
                                     class="editInput"
@@ -136,35 +162,34 @@
                                     class="editLabel"
                                 />
                                 <DatePicker
-                                    value="{path: 'globalModel>/edit/Birthday', formatter: '.formatter.formatDate'}"
+                                    id="idBirthdayDatePicker"
+                                    value="{path: 'globalModel>/edit/Birthday', type: 'sap.ui.model.type.Date', formatOptions: { style: 'long' }}"
                                     displayFormat="long"
+                                    valueFormat="yyyy-MM-dd"
                                     class="editInput"
                                 />
                             </VBox>
                         </HBox>
                     </f:content>
-                    <f:title>
-                        <c:Title
-                            level="H1"
-                            text="Çalışan Düzenle"
-                        />
-                    </f:title>
                 </f:SimpleForm>
             </VBox>
         </content>
 
         <footer>
             <Bar design="Footer">
+                <contentLeft>
+                    <Button
+                        text="Geri Dön"
+                        type="Back"
+                        press="onGeriDnButtonPress"
+                    />
+                </contentLeft>
+
                 <contentRight>
                     <Button
                         text="Kaydet"
                         type="Success"
-                        press="onSavePress"
-                    />
-                    <Button
-                        text="İptal"
-                        type="Negative"
-                        press="onCancelPress"
+                        press="onKaydetButtonPress"
                     />
                 </contentRight>
             </Bar>

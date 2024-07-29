@@ -64,7 +64,7 @@
                             </t:template>
                         </t:Column>
                         <t:Column
-                            width="11rem"
+                            width="9rem"
                             filterProperty="Name"
                             defaultFilterOperator="StartsWith"
                         >
@@ -87,7 +87,7 @@
                                 />
                             </t:template>
                         </t:Column>
-                        <t:Column width="7rem">
+                        <t:Column width="6rem">
                             <Label text="Maaş" />
                             <t:template>
                                 <Input
@@ -97,7 +97,7 @@
                                 />
                             </t:template>
                         </t:Column>
-                        <t:Column width="7rem">
+                        <t:Column width="6rem">
                             <Label text="Departman" />
                             <t:template>
                                 <Text
@@ -141,19 +141,19 @@
                                 />
                             </t:template>
                         </t:Column>
+                        <t:Column width="4rem">
+                            <Label text="Sil" />
+                            <t:template>
+                                <Button
+                                    icon="sap-icon://delete"
+                                    type="Negative"
+                                    press="onButtonDeletePress"
+                                    class="contactButton"
+                                />
+                            </t:template>
+                        </t:Column>
                     </t:columns>
                 </t:Table>
-                <!-- 
-			var oAddEmpData = {
-				Name: sName,
-				Surname: sSurname,
-				Salary: sSalary,
-				Department: sDepartment,
-				PhoneNumber: sNumber,
-				Birthday: sDate,
-				Email: sEmail,
-				Pimage: this._sFileContent
-			}-->
             </HBox>
         </content>
     </Page>
