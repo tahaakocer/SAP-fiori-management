@@ -59,9 +59,9 @@ sap.ui.define([
 				oFilter = this._oPriceFilter;
 			}
 
-			this.byId("idTable").getBinding().filter(oFilter, "Application");
+			this.getView().byId("idTable").getBinding().filter(oFilter, "Application");
 		},
-		filterGlobally: function (oEvent) {
+		onGlobalFilterSearchFieldSearch: function (oEvent) {
 			const sQuery = oEvent.getParameter("query");
 			this._oGlobalFilter = null;
 
@@ -74,34 +74,14 @@ sap.ui.define([
 
 			this._filter();
 		},
-		clearAllFilters: function (oEvent) {
-			const oTable = this.byId("idTable");
-
-			const oUiModel = this.getView().getModel("ui");
-			oUiModel.setProperty("/globalFilter", "");
-			oUiModel.setProperty("/availabilityFilterOn", false);
-
-			this._oGlobalFilter = null;
-			this._oPriceFilter = null;
-			this._filter();
-
-			const aColumns = oTable.getColumns();
-			for (let i = 0; i < aColumns.length; i++) {
-				oTable.filter(aColumns[i], null);
-			}
-		}
-		,
-		onButtonClearFiltersPress: function (oEvent) {
-
-		},
-
-		onGlobalFilterSearchFieldSearch: function (oEvent) {
-
-		},
 
 		onAvatarPress: function (oEvent) {
 
 		},
+		// =================================================================================
+		// =====================================BUTTONS=====================================
+		// =================================================================================
+
 		onContactButtonPress: function (oEvent) {
 			var oDataModel = this.getOwnerComponent().getModel("myOdata");
 			var globalModel = this.getOwnerComponent().getModel("globalModel");
@@ -118,7 +98,6 @@ sap.ui.define([
 				PhoneNumber: oData.PhoneNumber,
 				Pimage: oData.Pimage
 			});
-			console.log(globalModel.getProperty("/contactDetails"));
 
 			if (!this._oDialog) {
 				Fragment.load({
@@ -149,7 +128,6 @@ sap.ui.define([
 			var oButton = oEvent.getSource();
 			var oBindingContext = oButton.getBindingContext("globalModel");
 			var oData = oBindingContext.getObject();
-			console.log(oData);
 
 			globalModel.setProperty("/edit", {
 				Id: oData.Id,
@@ -158,37 +136,41 @@ sap.ui.define([
 				Salary: oData.Salary,
 				Department: oData.Department,
 				PhoneNumber: oData.PhoneNumber,
-				Birthday: new Date(oData.Birthday), 
+				Birthday: new Date(oData.Birthday),
 				Email: oData.Email,
 				Pimage: oData.Pimage
 			});
 			console.log(globalModel.getProperty("/edit"));
 			router.navTo("edit");
+
 		},
 
-		onButtonDeletePress: function(oEvent) {
+		onButtonDeletePress: function (oEvent) {
 			var oDataModel = this.getOwnerComponent().getModel("myOdata");
+			var globalModel = this.getOwnerComponent().getModel("globalModel");
 			var oButton = oEvent.getSource();
 			var oBindingContext = oButton.getBindingContext("globalModel");
+			var oTable = this.byId("idTable");
+
 			var oData = oBindingContext.getObject();
 			var url = `/employeeSet(Id='${oData.Id}')`;
 
-			oDataModel.remove(url,{
-				success: function() {
+			oDataModel.remove(url, {
+				success: function () {
 					MessageToast.show("Çalışan başarıyla silindi.");
+					//  	
+					oTable.unbindRows();
+					
+					oTable.bindRows({
+						path: "globalModel>/getAllEmployees"
+					});
 				},
-				error: function() {
+				error: function () {
 					MessageToast.show("Çalışan silinirken bir hata oluştu.");
 					console.log("Çalışan silinirken bir hata oluştu.");
 				}
 			});
 			Helper.refreshTable(this.getOwnerComponent());
-		
-
 		}
-
-
-
-
 	});
 });

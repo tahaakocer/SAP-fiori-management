@@ -1,7 +1,9 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller"
+    "sap/ui/core/mvc/Controller",
+    "com/solvia/management/utils/Helper"
 ], function (
-    Controller
+    Controller,
+	Helper
 ) {
     "use strict";
 
@@ -45,6 +47,7 @@ sap.ui.define([
                     router.navTo("home");
                     break;
             }
+            Helper.refreshTable(this.getOwnerComponent());
         }
     });
 });

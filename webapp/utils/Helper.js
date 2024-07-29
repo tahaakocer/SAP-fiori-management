@@ -3,8 +3,10 @@ sap.ui.define(["sap/ui/core/BusyIndicator"], function (
     "use strict";
     var Helper = {
         refreshTable: function (oComponent) {
+
             var oDataModel = oComponent.getModel("myOdata");
             var globalModel = oComponent.getModel("globalModel");
+            console.log(globalModel);
             BusyIndicator.show();
             oDataModel.read("/employeeSet", {
                 success: function (oData) {

@@ -141,8 +141,8 @@ sap.ui.define([
 				var oFile = aFiles[0];
 				var reader = new FileReader();
 				reader.onload = function (e) {
-					var sBase64 = e.target.result;
-					this._sFileContent = sBase64.split(",")[1];
+					var vContent = e.target.result;
+					this._sFileContent = vContent.split(",")[1];
 					const byteString = atob(this._sFileContent);
 					console.log(byteString);
 				}.bind(this);

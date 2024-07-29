@@ -15,6 +15,7 @@
                     press="onAvatarPress"
                     class="detailAvatar"
                 />
+        
                 <Text
                     text="{globalModel>/contactDetails/Name} {globalModel>/contactDetails/Surname}"
                     class="detailText"
