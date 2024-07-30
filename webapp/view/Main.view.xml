@@ -3,6 +3,8 @@
     xmlns:mvc="sap.ui.core.mvc"
     displayBlock="true"
     xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:card="sap.f.cards"
 >
     <Page
         id="idPage"
@@ -14,8 +16,37 @@
                     viewName="com.solvia.management.view.Aside"
                     type="XML"
                 />
-              
-                <Text text="BURASI MAIN PAGE" />
+
+                <f:Card
+                    class="sapUiMediumMargin"
+                    headerPosition="Top"
+                    width="300px"
+                >
+                    <f:header>
+                        <card:Header
+                            title="Yeni Ürün"
+                            subtitle="Yeni bir ürün ekleyin"
+                            iconSrc="sap-icon://SAP-icons-TNT/block"
+                        />
+                    </f:header>
+
+                    <f:content>
+
+                        <Button
+                            ariaHasPopup="None"
+                            enabled="true"
+                            icon="sap-icon://SAP-icons-TNT/data-output-arrow"
+                            iconDensityAware="true"
+                            iconFirst="true"
+                            text="Git"
+                            textDirection="RTL"
+                            type="Default"
+                            width=""
+                        >
+                            
+                        </Button>
+                    </f:content>
+                </f:Card>
             </HBox>
         </content>
     </Page>

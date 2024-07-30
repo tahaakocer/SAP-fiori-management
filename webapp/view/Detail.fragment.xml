@@ -15,7 +15,7 @@
                     press="onAvatarPress"
                     class="detailAvatar"
                 />
-        
+
                 <Text
                     text="{globalModel>/contactDetails/Name} {globalModel>/contactDetails/Surname}"
                     class="detailText"
@@ -28,6 +28,7 @@
                     editable="false"
                     value="{path: 'globalModel>/contactDetails/PhoneNumber', formatter: '.formatter.formatPhoneNum'}"
                     class="customInput"
+                    enabled="false"
                 />
                 <Label text="Email" />
                 <Input
@@ -36,6 +37,7 @@
                     editable="false"
                     value="{globalModel>/contactDetails/Email}"
                     class="customInput"
+                    enabled="false"
                 />
             </VBox>
         </content>

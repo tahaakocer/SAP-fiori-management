@@ -22,6 +22,7 @@ sap.ui.define([
         },
 
         onSideNavigationItemSelect: function (oEvent) {
+            debugger;
             const oItem = oEvent.getParameter("item");
             const sKey = oItem.getKey();
             var router = this.getOwnerComponent().getRouter();
