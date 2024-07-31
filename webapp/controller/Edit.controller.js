@@ -60,13 +60,15 @@ sap.ui.define([
             var sEmail = this.byId("idEmailInput").getValue();
             var sDepartment = this.byId("idSelect").getSelectedKey();
             var sSalary = this.byId("idSalaryInput").getValue();
-
+            var sGender = this.byId("idGenderSelect").getSelectedKey();
             var oAvatar = this.byId("idAvatar");
+
             this._sFileContent = oAvatar.getSrc().split(",")[1];
             console.log(this._sFileContent);
             var oAddEmpData = {
                 Name: sName,
                 Surname: sSurname,
+                Gender, sGender,
                 Salary: sSalary,
                 Department: sDepartment,
                 PhoneNumber: sNumber,

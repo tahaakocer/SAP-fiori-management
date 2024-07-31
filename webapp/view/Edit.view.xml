@@ -18,7 +18,7 @@
                         text="Çalışan Düzenleme"
                         level="H1"
                         textAlign="Center"
-                        class= "title"
+                        class="title"
                     />
                     <ToolbarSpacer />
                 </content>
@@ -42,6 +42,17 @@
                                 class="editAvatarVBox"
                                 alignItems="Center"
                             >
+                                <Label
+                                    text="Id:"
+                                    class="editLabel"
+                                />
+                                <Input
+                                    id="idIdInput"
+                                    value="{globalModel>/edit/Id}"
+                                    class="editInput sapUiMediumMarginBottom"
+                                    editable="false"
+                                    enabled="false"
+                                />
                                 <Avatar
                                     id="idAvatar"
                                     src="{= ${globalModel>/edit/Pimage} ? 'data:image/jpeg;base64,' + ${globalModel>/edit/Pimage} : ''}"
@@ -57,17 +68,6 @@
                             </VBox>
 
                             <VBox class="editFormVBox">
-                                <Label
-                                    text="Id:"
-                                    class="editLabel"
-                                />
-                                <Input
-                                    id="idIdInput"
-                                    value="{globalModel>/edit/Id}"
-                                    class="editInput"
-                                    editable="false"
-                                    enabled="false"
-                                />
                                 <Label
                                     text="Adı:"
                                     class="editLabel"
@@ -87,6 +87,27 @@
                                     value="{globalModel>/edit/Surname}"
                                     class="editInput"
                                 />
+                                <Label
+                                    text="Cinsiyet:"
+                                    class="editLabel"
+                                />
+                                <Select
+                                    id="idGenderSelect"
+                                    selectedKey="{globalModel>/edit/Gender}"
+                                    class="editSelect"
+                                >
+                                    <items>
+                                        <c:Item
+                                            key="E"
+                                            text="Erkek"
+                                        />
+                                        <c:Item
+                                            key="K"
+                                            text="Kadın"
+                                        />
+                                     
+                                    </items>
+                                </Select>
 
                                 <Label
                                     text="Maaş:"

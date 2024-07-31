@@ -29,7 +29,6 @@
                                     iconSrc="sap-icon://SAP-icons-TNT/block"
                                 />
                             </f:header>
-
                             <f:content>
                                 <VBox
                                     class="mainButton"
@@ -86,26 +85,21 @@
                                     <List
                                         class="sapUiSmallMarginBottom"
                                         showSeparators="Inner"
-                                        
-                                        items="{
-					                                path: 'globalModel>/getEmployeesForMain'
-				                                }"
+                                        items="{ path: 'globalModel>/getEmployeesForMain' }"
                                     >
                                         <CustomListItem>
                                             <HBox
                                                 alignItems="Center"
                                                 justifyContent="SpaceBetween"
-                                                
                                             >
                                                 <VBox
                                                     class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"
                                                 >
-                                                    <HBox class="">
+                                                    <HBox>
                                                         <Avatar
                                                             src="{= ${globalModel>Pimage} ? 'data:image/jpeg;base64,' + ${globalModel>Pimage} : ''}"
                                                             class="customMainAvatar"
                                                         />
-
                                                         <VBox
                                                             class="sapUiSmallMarginBegin"
                                                             alignItems="Center"

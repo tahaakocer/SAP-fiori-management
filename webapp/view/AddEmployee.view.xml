@@ -73,10 +73,27 @@
                                         valueState="{globalModel>/employeeDateState}"
                                         id="idBirthdayDatePicker"
                                         displayFormat="short"
-                                       
-                                    
                                         value="{birthday}"
                                     />
+                                    <Label text="Cinsiyet" />
+                                    <HBox>
+                                        <SegmentedButton
+                                            id="idGenderSegmentedButton"
+                                            width="200px"
+                                        >
+                                            <items>
+                                                <SegmentedButtonItem
+                                                    key="E"
+                                                    text="Erkek"
+                                                />
+
+                                                <SegmentedButtonItem
+                                                    key="K"
+                                                    text="Kadın"
+                                                />
+                                            </items>
+                                        </SegmentedButton>
+                                    </HBox>
                                 </form:SimpleForm>
                             </content>
                         </WizardStep>
@@ -151,43 +168,43 @@
                                 editable="true"
                                 layout="ResponsiveGridLayout"
                             >
-                              <HBox
+                                <HBox
                                     alignItems="Center"
                                     justifyContent="Center"
                                     width="100%"
                                 >
-                                <SegmentedButton
-                                    selectedKey="{department}"
-                                    width="550px"
-                                    id="idDepartmentSegmentedButton"
-                                >
-                                    <items>
-                                        <SegmentedButtonItem
-                                            key="1"
-                                            text="Admin"
-                                        />
-                                        <SegmentedButtonItem
-                                            key="2"
-                                            text="Finans"
-                                        />
-                                        <SegmentedButtonItem
-                                            key="3"
-                                            text="Bakım"
-                                        />
-                                        <SegmentedButtonItem
-                                            key="4"
-                                            text="Tedarik"
-                                        />
-                                        <SegmentedButtonItem
-                                            key="5"
-                                            text="Pazarlama"
-                                        />
-                                        <SegmentedButtonItem
-                                            key="6"
-                                            text="Üretim"
-                                        />
-                                    </items>
-                                </SegmentedButton>
+                                    <SegmentedButton
+                                        selectedKey="{department}"
+                                        width="550px"
+                                        id="idDepartmentSegmentedButton"
+                                    >
+                                        <items>
+                                            <SegmentedButtonItem
+                                                key="1"
+                                                text="Admin"
+                                            />
+                                            <SegmentedButtonItem
+                                                key="2"
+                                                text="Finans"
+                                            />
+                                            <SegmentedButtonItem
+                                                key="3"
+                                                text="Bakım"
+                                            />
+                                            <SegmentedButtonItem
+                                                key="4"
+                                                text="Tedarik"
+                                            />
+                                            <SegmentedButtonItem
+                                                key="5"
+                                                text="Pazarlama"
+                                            />
+                                            <SegmentedButtonItem
+                                                key="6"
+                                                text="Üretim"
+                                            />
+                                        </items>
+                                    </SegmentedButton>
                                 </HBox>
                                 <Label
                                     text="Maaş"

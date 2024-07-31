@@ -44,6 +44,7 @@ sap.ui.define([
 			this._oPriceFilter = null;
 
 			Helper.refreshTable(this.getOwnerComponent());
+			
 		},
 		// ======================================================================================
 		// ====================================FILTER METHODS====================================
@@ -120,6 +121,7 @@ sap.ui.define([
 		},
 
 		onEditButtonPress: function (oEvent) {
+			debugger;
 			var router = this.getOwnerComponent().getRouter();
 			var oDataModel = this.getOwnerComponent().getModel("myOdata");
 			var globalModel = this.getOwnerComponent().getModel("globalModel");
@@ -128,11 +130,12 @@ sap.ui.define([
 			var oButton = oEvent.getSource();
 			var oBindingContext = oButton.getBindingContext("globalModel");
 			var oData = oBindingContext.getObject();
-
+			
 			globalModel.setProperty("/edit", {
 				Id: oData.Id,
 				Name: oData.Name,
 				Surname: oData.Surname,
+				Gender: oData.Gender,
 				Salary: oData.Salary,
 				Department: oData.Department,
 				PhoneNumber: oData.PhoneNumber,

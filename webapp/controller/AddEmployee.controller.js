@@ -65,11 +65,13 @@ sap.ui.define([
 			var sEmail = this.byId("idEmailInput").getValue();
 			var sDepartment = this.byId("idDepartmentSegmentedButton").getSelectedKey();
 			var sSalary = this.byId("idSalaryInput").getValue();
+			var sGender = this.byId("idGenderSegmentedButton").getSelectedKey();
 			var oFileUploader = this.byId("idFileUploader");
 
 			var oAddEmpData = {
 				Name: sName,
 				Surname: sSurname,
+				Gender: sGender,
 				Salary: sSalary,
 				Department: sDepartment,
 				PhoneNumber: sNumber,
@@ -77,7 +79,7 @@ sap.ui.define([
 				Email: sEmail,
 				Pimage: this._sFileContent
 			}
-
+			console.log(oAddEmpData.Gender);
 			if (Validations.validationForm(oAddEmpData)) {
 				oDataModel.create("/employeeSet", oAddEmpData, {
 					method: "POST",
