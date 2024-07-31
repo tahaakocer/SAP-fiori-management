@@ -7,6 +7,7 @@
     displayBlock="true"
     busyIndicatorDelay="0"
 >
+
     <VBox
         renderType="Bare"
         alignItems="Start"
@@ -14,8 +15,9 @@
     >
         <tnt:SideNavigation
             id="idSideNavigation"
-            selectedKey="idAnaSayfaNavigationListItem"
+
             itemSelect="onSideNavigationItemSelect"
+        
         >
             <tnt:NavigationList>
                 <tnt:NavigationListItem

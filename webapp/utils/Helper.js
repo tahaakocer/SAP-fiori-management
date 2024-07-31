@@ -6,13 +6,11 @@ sap.ui.define(["sap/ui/core/BusyIndicator"], function (
 
             var oDataModel = oComponent.getModel("myOdata");
             var globalModel = oComponent.getModel("globalModel");
-            console.log(globalModel);
             BusyIndicator.show();
             oDataModel.read("/employeeSet", {
                 success: function (oData) {
                     BusyIndicator.hide();
                     globalModel.setProperty("/getAllEmployees", oData.results);
-                    console.log(oData.results);
                 },
                 error: function (oError) {
                     BusyIndicator.hide();

@@ -16,37 +16,127 @@
                     viewName="com.solvia.management.view.Aside"
                     type="XML"
                 />
-
-                <f:Card
-                    class="sapUiMediumMargin"
-                    headerPosition="Top"
-                    width="300px"
-                >
-                    <f:header>
-                        <card:Header
-                            title="Yeni Ürün"
-                            subtitle="Yeni bir ürün ekleyin"
-                            iconSrc="sap-icon://SAP-icons-TNT/block"
-                        />
-                    </f:header>
-
-                    <f:content>
-
-                        <Button
-                            ariaHasPopup="None"
-                            enabled="true"
-                            icon="sap-icon://SAP-icons-TNT/data-output-arrow"
-                            iconDensityAware="true"
-                            iconFirst="true"
-                            text="Git"
-                            textDirection="RTL"
-                            type="Default"
-                            width=""
+                <VBox>
+                    <HBox>
+                        <f:Card
+                            class="sapUiMediumMargin"
+                            width="300px"
                         >
-                            
-                        </Button>
-                    </f:content>
-                </f:Card>
+                            <f:header>
+                                <card:Header
+                                    title="Yeni Ürün"
+                                    subtitle="Yeni bir ürün ekleyin"
+                                    iconSrc="sap-icon://SAP-icons-TNT/block"
+                                />
+                            </f:header>
+
+                            <f:content>
+                                <VBox
+                                    class="mainButton"
+                                    height="100%"
+                                    width="100%"
+                                >
+                                    <Button
+                                        icon="sap-icon://SAP-icons-TNT/data-output-arrow"
+                                        text="Git"
+                                        press="onGitButtonProductPress"
+                                    />
+                                </VBox>
+                            </f:content>
+                        </f:Card>
+                        <f:Card
+                            class="sapUiMediumMargin"
+                            width="300px"
+                        >
+                            <f:header>
+                                <card:Header
+                                    title="Yeni Çalışan"
+                                    subtitle="Yeni bir çalışan ekleyin"
+                                    iconSrc="sap-icon://employee"
+                                />
+                            </f:header>
+                            <f:content>
+                                <VBox
+                                    class="mainButton"
+                                    height="100%"
+                                    width="100%"
+                                >
+                                    <Button
+                                        icon="sap-icon://SAP-icons-TNT/data-output-arrow"
+                                        text="Git"
+                                        press="onGitButtonEmployeePress"
+                                    />
+                                </VBox>
+                            </f:content>
+                        </f:Card>
+                    </HBox>
+                    <HBox>
+                        <f:Card
+                            class="sapUiMediumMargin"
+                            width="300px"
+                        >
+                            <f:header>
+                                <card:Header
+                                    title="Çalışanlarınız"
+                                    subtitle="Güncel Çalışan Sayısı: {globalModel>/getEmployeesLength}"
+                                />
+                            </f:header>
+                            <f:content>
+                                <VBox>
+                                    <List
+                                        class="sapUiSmallMarginBottom"
+                                        showSeparators="Inner"
+                                        
+                                        items="{
+					                                path: 'globalModel>/getEmployeesForMain'
+				                                }"
+                                    >
+                                        <CustomListItem>
+                                            <HBox
+                                                alignItems="Center"
+                                                justifyContent="SpaceBetween"
+                                                
+                                            >
+                                                <VBox
+                                                    class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"
+                                                >
+                                                    <HBox class="">
+                                                        <Avatar
+                                                            src="{= ${globalModel>Pimage} ? 'data:image/jpeg;base64,' + ${globalModel>Pimage} : ''}"
+                                                            class="customMainAvatar"
+                                                        />
+
+                                                        <VBox
+                                                            class="sapUiSmallMarginBegin"
+                                                            alignItems="Center"
+                                                            justifyContent="Center"
+                                                        >
+                                                            <Title
+                                                                level="H3"
+                                                                text="{globalModel>Name} {globalModel>Surname}"
+                                                            />
+                                                        </VBox>
+                                                    </HBox>
+                                                </VBox>
+                                            </HBox>
+                                        </CustomListItem>
+                                    </List>
+                                    <VBox
+                                        class="mainButton"
+                                        height="100%"
+                                        width="100%"
+                                    >
+                                        <Button
+                                            icon="sap-icon://SAP-icons-TNT/data-output-arrow"
+                                            text="Daha Fazlasını Gör"
+                                            press="onGitButtonEmployeeTablePress"
+                                        />
+                                    </VBox>
+                                </VBox>
+                            </f:content>
+                        </f:Card>
+                    </HBox>
+                </VBox>
             </HBox>
         </content>
     </Page>

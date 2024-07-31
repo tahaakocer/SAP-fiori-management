@@ -3,7 +3,7 @@ sap.ui.define([
     "com/solvia/management/utils/Helper"
 ], function (
     Controller,
-	Helper
+    Helper
 ) {
     "use strict";
 
@@ -14,6 +14,16 @@ sap.ui.define([
         onInit: function () {
 
         },
+        /**
+         * @override
+         */
+        onAfterRendering: function () {
+            const oSideNavigation = this.byId("idSideNavigation");
+            oSideNavigation.setSelectedKey(null);
+            oSideNavigation.setSelectedItem(null);
+            console.log("onrender calisti aside");
+
+        },
         onNavigationListItemSelect() {
             const oSideNavigation = this.byId("idSideNavigation"),
                 bExpanded = oSideNavigation.getExpanded();
@@ -22,7 +32,6 @@ sap.ui.define([
         },
 
         onSideNavigationItemSelect: function (oEvent) {
-            debugger;
             const oItem = oEvent.getParameter("item");
             const sKey = oItem.getKey();
             var router = this.getOwnerComponent().getRouter();
@@ -48,6 +57,9 @@ sap.ui.define([
                     router.navTo("home");
                     break;
             }
+            // Ensure no item is selected in the SideNavigation
+            this.byId("idSideNavigation").setSelectedItem(null);
+            this.byId("idSideNavigation").setSelectedKey(null);
             Helper.refreshTable(this.getOwnerComponent());
         }
     });
