@@ -153,11 +153,11 @@
                                 layout="ResponsiveGridLayout"
                             >
                                 <form:content>
-                                    <Label text="Çalışan Fotoğrafı" />
+                                    <Label text="Ürün Fotoğrafı" />
                                     <u:FileUploader
                                         width="100%"
                                         id="idFileUploader"
-                                        tooltip="Çalışan profil fotoğrafını yerel sunucuya yükleyin"
+                                        tooltip="Ürün fotoğrafını yerel sunucuya yükleyin"
                                         style="Emphasized"
                                         change="onFileUploaderChange"
                                         uploadComplete="onFileUploaderUploadComplete"

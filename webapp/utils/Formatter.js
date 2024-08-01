@@ -39,6 +39,61 @@ sap.ui.define([], function () {
                 pattern: "dd/MM/yyyy"
             });
             return oDateFormat.format(new Date(date));
+        },
+        formatProductState: function (sKey) {
+            switch (sKey) {
+                case "1":
+                    return "Mağazada";
+                case "2":
+                    return "Depoda";
+                case "3":
+                    return "Yolda";
+                default:
+                    return "ERROR";
+            }
+        },
+
+        formatProductType: function (sKey) {
+            switch (sKey) {
+                case "1":
+                    return "Teknolojik Alet";
+                case "2":
+                    return "Beyaz Eşya";
+                case "3":
+                    return "Diğer";
+                default:
+                    return "ERROR";
+            }
+        },
+
+        getStateColor: function (sKey) {
+            switch (sKey) {
+                case "1": // Mağazada
+                    return "Success";
+                case "2": // Depoda
+                    return "Warning";
+                case "3": // Yolda
+                    return "Information";
+                default:
+                    return "None"; // ERROR durumu için
+            }
+        },
+
+        formatPrice: function (price) {
+            return parseFloat(price).toFixed(2);
+        },
+        formatGroupHeader: function (oContext) {
+            var sKey = oContext.getProperty("Type");
+            switch (sKey) {
+                case "1":
+                    return { key: "Teknolojik Aletler", text: "Teknolojik Aletler" };
+                case "2":
+                    return { key: "Beyaz Eşyalar", text: "Beyaz Eşyalar" };
+                case "3":
+                    return { key: "Diğer Ürünler", text: "Diğer Ürünler" };
+                default:
+                    return { key: "Bilinmeyen Kategori", text: "Bilinmeyen Kategori" };
+            }
         }
     };
 });

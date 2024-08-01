@@ -52,13 +52,17 @@ sap.ui.define([
                     break;
                 case "tableEmployee":
                     router.navTo("tableEmployee");
+                    Helper.refreshTable(this.getOwnerComponent());
+                    break;
+                case "tableProduct":
+                    router.navTo("tableProduct");
+                    Helper.refreshList(this.getOwnerComponent());
                     break;
                 default:
                     router.navTo("home");
                     break;
             }
-            this.byId("idSideNavigation").clearSelection();
-            Helper.refreshTable(this.getOwnerComponent());
+            ;
         }
     });
 });

@@ -7,7 +7,6 @@
     displayBlock="true"
     busyIndicatorDelay="0"
 >
-
     <VBox
         renderType="Bare"
         alignItems="Start"
@@ -15,9 +14,7 @@
     >
         <tnt:SideNavigation
             id="idSideNavigation"
-
             itemSelect="onSideNavigationItemSelect"
-        
         >
             <tnt:NavigationList>
                 <tnt:NavigationListItem
@@ -55,9 +52,14 @@
                     text="Listele"
                     icon="sap-icon://menu"
                 >
-                    <tnt:NavigationListItem text="Ürünler" />
-                    <tnt:NavigationListItem text="Çalışanlar" 
-                    key="tableEmployee"/>
+                    <tnt:NavigationListItem
+                        text="Ürünler"
+                        key="tableProduct"
+                    />
+                    <tnt:NavigationListItem
+                        text="Çalışanlar"
+                        key="tableEmployee"
+                    />
                     <tnt:NavigationListItem text="Adresler" />
                 </tnt:NavigationListItem>
                 <tnt:NavigationListItem

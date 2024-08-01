@@ -1,0 +1,86 @@
+<mvc:View
+    controllerName="com.solvia.management.controller.TableProduct"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:c="sap.ui.core"
+    displayBlock="true"
+    height="100%"
+    busyIndicatorDelay="0"
+>
+    <HBox height="100%">
+        <mvc:View
+            viewName="com.solvia.management.view.Aside"
+            type="XML"
+        />
+        <ScrollContainer
+            width="200%"
+            height="100%"
+            vertical="true"
+        >
+            <List
+                id="idGetAllProductsList"
+                headerText="Ürünler"
+                class="sapUiResponsiveMargin"
+                width="auto"
+                items="{
+                    path : 'globalModel>/getAllProducts',
+                    sorter : {
+                        path : 'Type',
+                        group : '.formatter.formatGroupHeader'
+                    }
+                }"
+            >
+                <headerToolbar>
+                    <Toolbar>
+                        <Title text="Ürünler" />
+                        <ToolbarSpacer />
+                        <SearchField
+                            width="50%"
+                            search="onSearchFieldSearch"
+                        />
+                        <Select
+                            id="idSortSelect"
+                            change="onSelectChange"
+                        >
+                            <c:Item
+                                key="Title"
+                                text="Title"
+                            />
+                            <c:Item
+                                key="Quantity"
+                                text="Quantity"
+                            />
+                        </Select>
+                    </Toolbar>
+                </headerToolbar>
+
+                <items>
+                    <ObjectListItem
+                        icon="{= ${globalModel>Pimage} ? 'data:image/jpeg;base64,' + ${globalModel>Pimage} : ''}"
+                        title="{globalModel>Quantity} x {globalModel>Title}"
+                        number="{ parts: ['globalModel>Price'], formatter: '.formatter.formatPrice' }"
+                        numberUnit="EUR"
+                        numberState="{= ${globalModel>Price} > 500 ? 'Error' : 'Success' }"
+                        type="Navigation"
+                        press=".onObjectListItemPress"
+                    >
+                        <!-- Ürünün Durumu (State) -->
+                        <firstStatus>
+                            <ObjectStatus
+                                text="{ parts: ['globalModel>State'], formatter: '.formatter.formatProductState' }"
+                                state="{ parts: ['globalModel>State'], formatter: '.formatter.getStateColor' }"
+                            />
+                        </firstStatus>
+
+                        <!-- Ürünün Tipi (Type) -->
+                        <attributes>
+                            <ObjectAttribute
+                                text="{ parts: ['globalModel>Type'], formatter: '.formatter.formatProductType' }"
+                            />
+                        </attributes>
+                    </ObjectListItem>
+                </items>
+            </List>
+        </ScrollContainer>
+    </HBox>
+</mvc:View>

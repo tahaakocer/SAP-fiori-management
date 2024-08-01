@@ -121,7 +121,6 @@ sap.ui.define([
 		},
 
 		onEditButtonPress: function (oEvent) {
-			debugger;
 			var router = this.getOwnerComponent().getRouter();
 			var oDataModel = this.getOwnerComponent().getModel("myOdata");
 			var globalModel = this.getOwnerComponent().getModel("globalModel");
