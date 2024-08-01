@@ -57,9 +57,7 @@ sap.ui.define([
                     router.navTo("home");
                     break;
             }
-            // Ensure no item is selected in the SideNavigation
-            this.byId("idSideNavigation").setSelectedItem(null);
-            this.byId("idSideNavigation").setSelectedKey(null);
+            this.byId("idSideNavigation").clearSelection();
             Helper.refreshTable(this.getOwnerComponent());
         }
     });

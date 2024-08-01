@@ -5,6 +5,9 @@
     xmlns="sap.m"
     xmlns:f="sap.f"
     xmlns:card="sap.f.cards"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
 >
     <Page
         id="idPage"
@@ -123,10 +126,55 @@
                                         <Button
                                             icon="sap-icon://SAP-icons-TNT/data-output-arrow"
                                             text="Daha Fazlasını Gör"
-                                            press="onGitButtonEmployeeTablePress"
+                                            press="onDahaFazlasnGrButtonPress"
                                         />
                                     </VBox>
                                 </VBox>
+                            </f:content>
+                        </f:Card>
+                        <f:Card
+                            class="sapUiMediumMargin"
+                            width="300px"
+                        >
+                            <f:header>
+                                <card:Header title="Departman dağılımı" />
+                            </f:header>
+                            <f:content>
+                                <viz:VizFrame
+                                    id="idVizFrame"
+                                    uiConfig="{applicationSet:'fiori'}"
+                                    height='100%'
+                                    width="100%"
+                                    vizType='donut'
+                                >
+                                    <viz:dataset>
+                                        <viz.data:FlattenedDataset
+                                            data="{globalModel>/getAllEmployees}"
+                                        >
+                                            <viz.data:measures>
+                                                <viz.data:MeasureDefinition
+                                                    name="Employee Count"
+                                                    value="{globalModel>/getEmployeesLength}"
+                                                />
+                                            </viz.data:measures>
+                                        </viz.data:FlattenedDataset>
+                                    </viz:dataset>
+                                    <viz:feeds>
+                                        <viz.feeds:FeedItem
+                                            uid="size"
+                                            type="Measure"
+                                            values="Employee Count"
+                                        />
+                                        <viz.feeds:FeedItem
+                                            uid="color"
+                                            type="Dimension"
+                                            values="Department"
+                                        />
+                                    </viz:feeds>
+                                    <viz:dependents>
+                                        <viz:Popover id="idPopOver" />
+                                    </viz:dependents>
+                                </viz:VizFrame>
                             </f:content>
                         </f:Card>
                     </HBox>

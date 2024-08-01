@@ -3,6 +3,7 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:form="sap.ui.layout.form"
     xmlns="sap.m"
+    xmlns:u="sap.ui.unified"
     displayBlock="true"
     height="100%"
     busyIndicatorDelay="0"
@@ -152,13 +153,15 @@
                                 layout="ResponsiveGridLayout"
                             >
                                 <form:content>
-                                    <Label text="Fotoğraf URL" />
-                                    <Input
-                                        id="idImageUrlInput"
-                                        value="{imageUrl}"
-                                        placeholder="https://..."
-                                        type="Url"
-                                        valueStateText=""
+                                    <Label text="Çalışan Fotoğrafı" />
+                                    <u:FileUploader
+                                        width="100%"
+                                        id="idFileUploader"
+                                        tooltip="Çalışan profil fotoğrafını yerel sunucuya yükleyin"
+                                        style="Emphasized"
+                                        change="onFileUploaderChange"
+                                        uploadComplete="onFileUploaderUploadComplete"
+                                        placeholder="Yüklemek için fotoğraf seçiniz..."
                                     />
                                     <Label text="Üretilme Tarihi" />
                                     <DatePicker

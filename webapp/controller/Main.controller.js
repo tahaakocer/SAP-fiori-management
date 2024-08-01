@@ -30,6 +30,36 @@ sap.ui.define([
                         MessageToast.show("Tablo yüklenirken bir hata oluştu");
                     }
                 });
+
+                // Donut Chart'ı tanımlama
+                var oVizFrame = this.getView().byId("idVizFrame");
+                oVizFrame.setVizProperties({
+                    title: {
+                        text: "Çalışan Dağılımı"
+                    },
+                    plotArea: {
+                        dataLabel: {
+                            visible: true
+                        }
+                    },
+                    valueAxis: {
+                        label: {
+                            formatString: "#,##0"  // Numara formatlaması
+                        },
+                        title: {
+                            visible: false
+                        }
+                    },
+                    categoryAxis: {
+                        title: {
+                            visible: false
+                        }
+                    }
+                });
+
+                // Model'i bağlama (globalModel içindeki /getAllEmployes)
+                var oGlobalModel = this.getOwnerComponent().getModel("globalModel");
+                oVizFrame.setModel(oGlobalModel);
             },
 
             onGitButtonEmployeePress: function (oEvent) {
@@ -41,7 +71,7 @@ sap.ui.define([
                 var router = this.getOwnerComponent().getRouter();
                 router.navTo("addProduct");
             },
-            onGitButtonEmployeeTablePress: function (params) {
+            onDahaFazlasnGrButtonPress: function (params) {
                 var router = this.getOwnerComponent().getRouter();
                 router.navTo("tableEmployee");
             }

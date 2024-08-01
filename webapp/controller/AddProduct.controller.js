@@ -19,6 +19,8 @@ sap.ui.define([
             var globalModel = this.getOwnerComponent().getModel("globalModel");
             var oDataModel = this.getOwnerComponent().getModel("myOdata");
             this._wizard = this.byId("idCreateProductWizard");
+            this._sFileContent = null;
+
 
         },
 
@@ -28,12 +30,12 @@ sap.ui.define([
         onSubmitButtonPress: function (oEvent) {
             var oDataModel = this.getOwnerComponent().getModel("myOdata");
             var oView = this.getView();
-            
+
             var sType = oView.byId("idSegmentedButton").getSelectedKey();
             var sTitle = oView.byId("idTitleInput").getValue();
             var sPrice = oView.byId("idPriceInput").getValue();
             var sDescription = oView.byId("idDescriptionTextArea").getValue();
-            var sImageUrl = oView.byId("idImageUrlInput").getValue();
+            var sImageUrl = oView.byId("idFileUploader").getValue();
             var sState = oView.byId("idStateSegmentedButton").getSelectedKey();
             var sDate = oView.byId("idMfcDateDatePicker").getDateValue();
 
@@ -41,11 +43,10 @@ sap.ui.define([
                 Title: sTitle,
                 Price: sPrice,
                 Description: sDescription,
-                ImageUrl: sImageUrl,
-                RatingId: "0000000001",
                 Type: sType,
                 State: sState,
-                MfcDate: sDate
+                MfcDate: sDate,
+                Pimage: this._sFileContent
             };
             console.log(oEmpData);
 
@@ -103,6 +104,34 @@ sap.ui.define([
 
         onPriceInputLiveChange: function (oEvent) {
             Validations.validateProductInfoStep(this);
+        },
+
+        onFileUploaderChange: function (oEvent) {
+            var oFileUploader = oEvent.getSource();
+            var aFiles = oEvent.getParameter("files");
+            if (aFiles && aFiles.length > 0) {
+                var oFile = aFiles[0];
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var vContent = e.target.result;
+                    this._sFileContent = vContent.split(",")[1];
+                    const byteString = atob(this._sFileContent);
+                    console.log(byteString);
+                }.bind(this);
+                reader.readAsDataURL(oFile);
+            }
+        },
+
+        onFileUploaderUploadComplete: function (oEvent) {
+            var sResponse = oEvent.getParameter("response"),
+                aRegexResult = /\d{4}/.exec(sResponse),
+                iHttpStatusCode = aRegexResult && parseInt(aRegexResult[0]),
+                sMessage;
+
+            if (sResponse) {
+                sMessage = iHttpStatusCode === 200 ? sResponse + " (Upload Success)" : sResponse + " (Upload Error)";
+                MessageToast.show(sMessage);
+            }
         }
     });
 });
