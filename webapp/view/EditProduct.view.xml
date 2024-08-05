@@ -75,7 +75,10 @@
                             </VBox>
 
                             <VBox class="editFormVBox">
-                                <HBox alignItems="Center" justifyContent="SpaceBetween">
+                                <HBox
+                                    alignItems="Center"
+                                    justifyContent="SpaceBetween"
+                                >
                                     <Label
                                         text="Başlık:"
                                         class="editProductLabel"
@@ -173,29 +176,35 @@
                                     />
                                 </HBox>
 
-                                <Label
-                                    text="Durum:"
-                                    class="editProductLabel"
-                                />
-                                <SegmentedButton
-                                    selectedKey="{globalModel>/editProduct/State}"
-                                    id="idStateSegmentedButton"
+                                <HBox
+                                    alignItems="Center"
+                                    justifyContent="SpaceBetween"
                                 >
-                                    <items>
-                                        <SegmentedButtonItem
-                                            key="1"
-                                            text="Mağaza"
-                                        />
-                                        <SegmentedButtonItem
-                                            key="2"
-                                            text="Depo"
-                                        />
-                                        <SegmentedButtonItem
-                                            key="3"
-                                            text="Yolda"
-                                        />
-                                    </items>
-                                </SegmentedButton>
+                                    <Label
+                                        text="Durum:"
+                                        class="editProductLabel"
+                                    />
+                                    <SegmentedButton
+                                        selectedKey="{globalModel>/editProduct/State}"
+                                        id="idStateSegmentedButton"
+										width="200px"
+                                    >
+                                        <items>
+                                            <SegmentedButtonItem
+                                                key="1"
+                                                text="Mağaza"
+                                            />
+                                            <SegmentedButtonItem
+                                                key="2"
+                                                text="Depo"
+                                            />
+                                            <SegmentedButtonItem
+                                                key="3"
+                                                text="Yolda"
+                                            />
+                                        </items>
+                                    </SegmentedButton>
+                                </HBox>
                             </VBox>
                         </HBox>
                     </f:content>
