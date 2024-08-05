@@ -17,12 +17,19 @@ sap.ui.define([], function () {
             var globalModel = context.getOwnerComponent().getModel("globalModel");
             var title = context.byId("idTitleInput").getValue();
             var price = parseInt(context.byId("idPriceInput").getValue());
-
+            var quantity = parseInt(context.byId("idQuantityInput").getValue());
+        
             if (isNaN(price)) {
                 context._wizard.setCurrentStep(context.byId("idProductInfoWizardStep"));
                 globalModel.setProperty("/productPriceState", "Error");
             } else {
                 globalModel.setProperty("/productPriceState", "None");
+            }
+            if (isNaN(quantity)) {
+                context._wizard.setCurrentStep(context.byId("idProductInfoWizardStep"));
+                globalModel.setProperty("/productQuantityState", "Error");
+            } else {
+                globalModel.setProperty("/productQuantityState", "None");
             }
 
             if (title.length < 6) {
@@ -32,7 +39,7 @@ sap.ui.define([], function () {
                 globalModel.setProperty("/productTitleState", "None");
             }
 
-            if (title.length < 6 || isNaN(price)) {
+            if (title.length < 6 || isNaN(price) || isNaN(quantity)) {
                 context._wizard.invalidateStep(context.byId("idProductInfoWizardStep"));
             } else {
                 context._wizard.validateStep(context.byId("idProductInfoWizardStep"));

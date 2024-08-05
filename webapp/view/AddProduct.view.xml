@@ -119,7 +119,19 @@
                                         liveChange="onPriceInputLiveChange"
                                         value="{price}"
                                     />
-
+                                    <Label
+                                        text="Stok Adeti"
+                                        required="true"
+                                    />
+                                    <Input
+                                        valueStateText="Sadece sayı giriniz"
+                                        valueState="{globalModel>/productQuantityState}"
+                                        id="idQuantityInput"
+                                        type="Number"
+                                        placeholder="Sayı giriniz"
+                                        liveChange="onQuantityInputLiveChange"
+                                        value="{quantity}"
+                                    />
                                     <Label
                                         text="Açıklama"
                                         required="true"

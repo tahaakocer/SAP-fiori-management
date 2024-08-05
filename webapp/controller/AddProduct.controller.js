@@ -38,6 +38,7 @@ sap.ui.define([
             var sImageUrl = oView.byId("idFileUploader").getValue();
             var sState = oView.byId("idStateSegmentedButton").getSelectedKey();
             var sDate = oView.byId("idMfcDateDatePicker").getDateValue();
+            var sQuantity = Number(oView.byId("idQuantityInput").getValue());
 
             var oEmpData = {
                 Title: sTitle,
@@ -46,7 +47,8 @@ sap.ui.define([
                 Type: sType,
                 State: sState,
                 MfcDate: sDate,
-                Pimage: this._sFileContent
+                Pimage: this._sFileContent,
+                Quantity: sQuantity
             };
             console.log(oEmpData);
 
@@ -89,8 +91,9 @@ sap.ui.define([
             oView.byId("idPriceInput").setValue("");
             oView.byId("idDescriptionTextArea").setValue("");
             oView.byId("idImageUrlInput").setValue("");
-            oView.byId("idStateSegmentedButton").setSelectedKey("");
+            oView.byId("idStateSegmentedButton").setSelectedKey("");    
             oView.byId("idMfcDateDatePicker").setDateValue(null);
+            oView.byId("idQuantityInput").setValue("");
         },
 
         onCancelButtonPress: function (oEvent) {
@@ -103,6 +106,10 @@ sap.ui.define([
         },
 
         onPriceInputLiveChange: function (oEvent) {
+            Validations.validateProductInfoStep(this);
+        },
+
+        onQuantityInputLiveChange: function (oEvent) {
             Validations.validateProductInfoStep(this);
         },
 

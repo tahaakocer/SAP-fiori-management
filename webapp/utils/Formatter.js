@@ -55,11 +55,11 @@ sap.ui.define([], function () {
 
         formatProductType: function (sKey) {
             switch (sKey) {
-                case "1":
+                case '1':
                     return "Teknolojik Alet";
-                case "2":
+                case '2':
                     return "Beyaz Eşya";
-                case "3":
+                case '3':
                     return "Diğer";
                 default:
                     return "ERROR";
@@ -84,15 +84,16 @@ sap.ui.define([], function () {
         },
         formatGroupHeader: function (oContext) {
             var sKey = oContext.getProperty("Type");
+
             switch (sKey) {
                 case "1":
-                    return { key: "Teknolojik Aletler", text: "Teknolojik Aletler" };
+                    return "Teknolojik Aletler";
                 case "2":
-                    return { key: "Beyaz Eşyalar", text: "Beyaz Eşyalar" };
+                    return "Beyaz Eşyalar";
                 case "3":
-                    return { key: "Diğer Ürünler", text: "Diğer Ürünler" };
+                    return "Diğer Ürünler";
                 default:
-                    return { key: "Bilinmeyen Kategori", text: "Bilinmeyen Kategori" };
+                    return "ERROR";
             }
         }
     };

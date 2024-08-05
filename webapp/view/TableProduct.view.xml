@@ -50,6 +50,10 @@
                                 key="Quantity"
                                 text="Quantity"
                             />
+                            <c:Item
+                                key="Type"
+                                text="Type"
+                            />
                         </Select>
                     </Toolbar>
                 </headerToolbar>
@@ -64,7 +68,6 @@
                         type="Navigation"
                         press=".onObjectListItemPress"
                     >
-                        <!-- Ürünün Durumu (State) -->
                         <firstStatus>
                             <ObjectStatus
                                 text="{ parts: ['globalModel>State'], formatter: '.formatter.formatProductState' }"
@@ -72,7 +75,6 @@
                             />
                         </firstStatus>
 
-                        <!-- Ürünün Tipi (Type) -->
                         <attributes>
                             <ObjectAttribute
                                 text="{ parts: ['globalModel>Type'], formatter: '.formatter.formatProductType' }"

@@ -1,0 +1,200 @@
+<mvc:View
+    controllerName="com.solvia.management.controller.EditProduct"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:c="sap.ui.core"
+    xmlns:u="sap.ui.unified"
+    xmlns:f="sap.ui.layout.form"
+    displayBlock="true"
+    height="100%"
+    busyIndicatorDelay="0"
+>
+    <Page
+        title="Product Details"
+        showNavButton="true"
+        navButtonPress="onPageNavButtonPress"
+    >
+        <customHeader>
+            <Toolbar class="toolbarCenter">
+                <content>
+                    <ToolbarSpacer />
+                    <Title
+                        text="Ürün Detayları"
+                        level="H1"
+                        textAlign="Center"
+                        class="title"
+                    />
+                    <ToolbarSpacer />
+                </content>
+            </Toolbar>
+        </customHeader>
+
+        <content>
+            <VBox
+                class="centeredFormVBox"
+                justifyContent="Center"
+                alignItems="Center"
+                height="100%"
+            >
+                <f:SimpleForm
+                    class="formSimpleForm"
+                    layout="ResponsiveGridLayout"
+                >
+                    <f:content>
+                        <HBox class="editContentHBox">
+                            <VBox
+                                class="editAvatarVBox"
+                                alignItems="Center"
+                            >
+                                <Label
+                                    text="Id:"
+                                    class="editLabel"
+                                />
+                                <Input
+                                    id="idIdInput"
+                                    value="{globalModel>/editProduct/Id}"
+                                    class="editInput sapUiMediumMarginBottom"
+                                    editable="false"
+                                    enabled="false"
+                                />
+                                <Avatar
+                                    id="idAvatar"
+                                    src="{= ${globalModel>/editProduct/Pimage} ? 'data:image/jpeg;base64,' + ${globalModel>/editProduct/Pimage} : ''}"
+                                    press="onAvatarPress"
+                                    class="editAvatar"
+                                    badgeIcon="sap-icon://editProduct"
+                                />
+                                <u:FileUploader
+                                    id="idFileUploader"
+                                    class="hiddenFileUploader"
+                                    change="onFileUploaderChange"
+                                />
+                            </VBox>
+
+                            <VBox class="editFormVBox">
+                                <Label
+                                    text="Başlık:"
+                                    class="editLabel"
+                                />
+                                <Input
+                                    id="idTitleInput"
+                                    value="{globalModel>/editProduct/Title}"
+                                    class="editInput"
+                                />
+
+                                <Label
+                                    text="Açıklama:"
+                                    class="editLabel"
+                                />
+                                <TextArea
+                                    id="idDescriptionTextArea"
+                                    value="{globalModel>/editProduct/Description}"
+                                    class="editInput"
+                                    rows="4"
+                                />
+                                <Label
+                                    text="Fiyat:"
+                                    class="editLabel"
+                                />
+                                <Input
+                                    id="idPriceInput"
+                                    value="{path: 'globalModel>/editProduct/Price', formatter: '.formatter.formatPrice'}"
+                                    class="editInput"
+                                />
+
+                                <Label
+                                    text="Type:"
+                                    class="editLabel"
+                                />
+                                <Select
+                                    id="idSelect"
+                                    selectedKey="{globalModel>/editProduct/Type}"
+                                >
+                                    <items>
+                                        <c:Item
+                                            key="1"
+                                            text="Teknolojik Eşya"
+                                        />
+                                        <c:Item
+                                            key="2"
+                                            text="Beyaz Eşya"
+                                        />
+                                        <c:Item
+                                            key="3"
+                                            text="Diğer"
+                                        />
+                                    </items>
+                                </Select>
+
+                                <Label
+                                    text="Stok Sayısı:"
+                                    class="editLabel"
+                                />
+                                <Input
+                                    id="idQuantityInput"
+                                    value="{globalModel>/editProduct/Quantity}"
+                                    class="editInput"
+                                />
+
+                                <Label
+                                    text="Üretim Tarihi:"
+                                    class="editLabel"
+                                />
+                                <DatePicker
+								id="idMfcDateDatePicker"
+                                    value="{path: 'globalModel>/editProduct/MfcDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'long' }}"
+                                    displayFormat="long"
+                                    valueFormat="yyyy-MM-dd"
+                                    class="editInput"
+                                />
+                                <Label
+                                    text="Durum:"
+                                    class="editLabel"
+                                />
+                                <SegmentedButton
+                                    selectedKey="{globalModel>/editProduct/State}"
+                                    id="idStateSegmentedButton"
+                                >
+                                    <items>
+                                        <SegmentedButtonItem
+                                            key="1"
+                                            text="Mağaza"
+                                        />
+                                        <SegmentedButtonItem
+                                            key="2"
+                                            text="Depo"
+                                        />
+                                        <SegmentedButtonItem
+                                            key="3"
+                                            text="Yolda"
+                                        />
+                                    </items>
+                                </SegmentedButton>
+                            </VBox>
+                        </HBox>
+                    </f:content>
+                </f:SimpleForm>
+            </VBox>
+        </content>
+
+        <footer>
+            <Bar design="Footer">
+                <contentLeft>
+                    <Button
+                        text="Geri Dön"
+                        type="Back"
+                        press="onGeriDnButtonPress"
+                    />
+                </contentLeft>
+
+                <contentRight>
+                    <Button
+                        text="Kaydet"
+                        type="Success"
+                        press="onKaydetButtonPress"
+                    />
+                </contentRight>
+            </Bar>
+        </footer>
+    </Page>
+</mvc:View>
