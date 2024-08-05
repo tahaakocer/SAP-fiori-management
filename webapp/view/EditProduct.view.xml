@@ -46,22 +46,25 @@
                                 class="editAvatarVBox"
                                 alignItems="Center"
                             >
-                                <Label
-                                    text="Id:"
-                                    class="editLabel"
-                                />
-                                <Input
-                                    id="idIdInput"
-                                    value="{globalModel>/editProduct/Id}"
-                                    class="editInput sapUiMediumMarginBottom"
-                                    editable="false"
-                                    enabled="false"
-                                />
+                                <HBox>
+                                    <Label
+                                        text="ID:"
+                                        class="editProductIdLabel"
+                                    />
+                                    <Input
+                                        id="idIdInput"
+                                        value="{globalModel>/editProduct/Id}"
+                                        class="editProductInput sapUiMediumMarginBottom"
+                                        editable="false"
+                                        enabled="false"
+                                    />
+                                </HBox>
+
                                 <Avatar
                                     id="idAvatar"
                                     src="{= ${globalModel>/editProduct/Pimage} ? 'data:image/jpeg;base64,' + ${globalModel>/editProduct/Pimage} : ''}"
                                     press="onAvatarPress"
-                                    class="editAvatar"
+                                    class="editProductAvatar"
                                     badgeIcon="sap-icon://editProduct"
                                 />
                                 <u:FileUploader
@@ -72,84 +75,107 @@
                             </VBox>
 
                             <VBox class="editFormVBox">
-                                <Label
-                                    text="Başlık:"
-                                    class="editLabel"
-                                />
-                                <Input
-                                    id="idTitleInput"
-                                    value="{globalModel>/editProduct/Title}"
-                                    class="editInput"
-                                />
+                                <HBox alignItems="Center" justifyContent="SpaceBetween">
+                                    <Label
+                                        text="Başlık:"
+                                        class="editProductLabel"
+                                    />
+                                    <Input
+                                        id="idTitleInput"
+                                        value="{globalModel>/editProduct/Title}"
+                                        class="editProductInput"
+                                    />
+                                </HBox>
 
                                 <Label
                                     text="Açıklama:"
-                                    class="editLabel"
+                                    class="editProductLabel"
                                 />
                                 <TextArea
                                     id="idDescriptionTextArea"
                                     value="{globalModel>/editProduct/Description}"
-                                    class="editInput"
+                                    class="editProductInput"
                                     rows="4"
                                 />
-                                <Label
-                                    text="Fiyat:"
-                                    class="editLabel"
-                                />
-                                <Input
-                                    id="idPriceInput"
-                                    value="{path: 'globalModel>/editProduct/Price', formatter: '.formatter.formatPrice'}"
-                                    class="editInput"
-                                />
-
-                                <Label
-                                    text="Type:"
-                                    class="editLabel"
-                                />
-                                <Select
-                                    id="idSelect"
-                                    selectedKey="{globalModel>/editProduct/Type}"
+                                <HBox
+                                    alignItems="Center"
+                                    justifyContent="SpaceBetween"
                                 >
-                                    <items>
-                                        <c:Item
-                                            key="1"
-                                            text="Teknolojik Eşya"
-                                        />
-                                        <c:Item
-                                            key="2"
-                                            text="Beyaz Eşya"
-                                        />
-                                        <c:Item
-                                            key="3"
-                                            text="Diğer"
-                                        />
-                                    </items>
-                                </Select>
+                                    <Label
+                                        text="Fiyat:"
+                                        class="editProductLabel"
+                                    />
+                                    <Input
+                                        id="idPriceInput"
+                                        value="{path: 'globalModel>/editProduct/Price', formatter: '.formatter.formatPrice'}"
+                                        class="editProductInput"
+                                    />
+                                </HBox>
+                                <HBox
+                                    alignItems="Center"
+                                    justifyContent="SpaceBetween"
+                                >
+                                    <Label
+                                        text="Type:"
+                                        class="editProductLabel"
+                                    />
+                                    <Select
+                                        id="idSelect"
+                                        selectedKey="{globalModel>/editProduct/Type}"
+                                        width="186px"
+                                    >
+                                        <items>
+                                            <c:Item
+                                                key="1"
+                                                text="Teknolojik Eşya"
+                                            />
+                                            <c:Item
+                                                key="2"
+                                                text="Beyaz Eşya"
+                                            />
+                                            <c:Item
+                                                key="3"
+                                                text="Diğer"
+                                            />
+                                        </items>
+                                    </Select>
+                                </HBox>
+                                <HBox
+                                    alignItems="Center"
+                                    justifyContent="SpaceBetween"
+                                >
+                                    <Label
+                                        text="Stok Sayısı:"
+                                        class="editProductLabel"
+                                    />
+                                    <Input
+                                        id="idQuantityInput"
+                                        value="{globalModel>/editProduct/Quantity}"
+                                        class="editProductInput"
+                                    />
+                                </HBox>
 
-                                <Label
-                                    text="Stok Sayısı:"
-                                    class="editLabel"
-                                />
-                                <Input
-                                    id="idQuantityInput"
-                                    value="{globalModel>/editProduct/Quantity}"
-                                    class="editInput"
-                                />
+                                <HBox
+                                    alignItems="Center"
+                                    justifyContent="SpaceBetween"
+                                >
+                                    <Label
+                                        text="Üretim Tarihi:"
+                                        class="editProductLabel"
+                                    />
+                                    <DatePicker
+                                        id="idMfcDateDatePicker"
+                                        value="{path: 'globalModel>/editProduct/MfcDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'long' }}"
+                                        displayFormat="long"
+                                        valueFormat="yyyy-MM-dd"
+                                        class="editProductInput"
+                                        width="186px"
+                                    />
+                                </HBox>
 
-                                <Label
-                                    text="Üretim Tarihi:"
-                                    class="editLabel"
-                                />
-                                <DatePicker
-								id="idMfcDateDatePicker"
-                                    value="{path: 'globalModel>/editProduct/MfcDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'long' }}"
-                                    displayFormat="long"
-                                    valueFormat="yyyy-MM-dd"
-                                    class="editInput"
-                                />
                                 <Label
                                     text="Durum:"
-                                    class="editLabel"
+                                    class="editProductLabel"
                                 />
                                 <SegmentedButton
                                     selectedKey="{globalModel>/editProduct/State}"

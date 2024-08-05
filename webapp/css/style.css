@@ -137,3 +137,22 @@
   width: 3rem;
   height: 3rem;
 }
+
+/*EDIT PRODUCT PAGE */
+.editProductLabel {
+  font-weight: bold;
+  font-size: 1rem;
+}
+.editProductAvatar {
+  width: 200px;
+  height: 200px;
+}
+.editProductInput {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+.editProductIdLabel {
+  margin-top: 7px;
+}
