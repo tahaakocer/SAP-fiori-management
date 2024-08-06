@@ -44,7 +44,7 @@ sap.ui.define([
 			this._oPriceFilter = null;
 
 			Helper.refreshTable(this.getOwnerComponent());
-			
+
 		},
 		// ======================================================================================
 		// ====================================FILTER METHODS====================================
@@ -129,7 +129,7 @@ sap.ui.define([
 			var oButton = oEvent.getSource();
 			var oBindingContext = oButton.getBindingContext("globalModel");
 			var oData = oBindingContext.getObject();
-			
+
 			globalModel.setProperty("/edit", {
 				Id: oData.Id,
 				Name: oData.Name,
@@ -142,6 +142,7 @@ sap.ui.define([
 				Email: oData.Email,
 				Pimage: oData.Pimage
 			});
+			sap.ushell.Container.getRenderer("fiori2").hideHeaderItem("backBtn", false);
 			console.log(globalModel.getProperty("/edit"));
 			router.navTo("edit");
 
@@ -162,7 +163,7 @@ sap.ui.define([
 					MessageToast.show("Çalışan başarıyla silindi.");
 					//  	
 					oTable.unbindRows();
-					
+
 					oTable.bindRows({
 						path: "globalModel>/getAllEmployees"
 					});

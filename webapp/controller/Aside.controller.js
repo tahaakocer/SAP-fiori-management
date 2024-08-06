@@ -1,9 +1,13 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "com/solvia/management/utils/Helper"
+    "com/solvia/management/utils/Helper",
+    "sap/m/MessageBox",
+    "sap/ui/core/routing/History"
 ], function (
     Controller,
-    Helper
+	Helper,
+	MessageBox,
+	History
 ) {
     "use strict";
 
@@ -12,8 +16,8 @@ sap.ui.define([
          * @override
          */
         onInit: function () {
-
         },
+
         /**
          * @override
          */
@@ -35,8 +39,6 @@ sap.ui.define([
             const oItem = oEvent.getParameter("item");
             const sKey = oItem.getKey();
             var router = this.getOwnerComponent().getRouter();
-
-
             switch (sKey) {
                 case "main":
                     router.navTo("RouteMain");
@@ -62,7 +64,17 @@ sap.ui.define([
                     router.navTo("home");
                     break;
             }
-            ;
+        },
+
+        onNavigationListItemBackSelect: function (oEvent) {
+            console.log("GERi DÖN");
+            var oHistory = History.getInstance();
+            var sPreviousHash = oHistory.getPreviousHash();
+
+            if (sPreviousHash !== undefined) {
+                console.log("Önceki sayfaya gidiliyor");
+                window.history.go(-1);
+            }
         }
     });
 });

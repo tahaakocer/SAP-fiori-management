@@ -33,7 +33,6 @@
                 <Label text="Email" />
                 <Input
                     id="idEmailInput"
-                    type="Text"
                     editable="false"
                     value="{globalModel>/contactDetails/Email}"
                     class="customInput"

@@ -172,7 +172,7 @@
                                         />
                                     </viz:feeds>
                                     <viz:dependents>
-                                        <viz:Popover id="idPopOver" />
+                                        <viz:Popover id="idPopover" />
                                     </viz:dependents>
                                 </viz:VizFrame>
                             </f:content>

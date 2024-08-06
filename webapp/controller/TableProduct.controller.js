@@ -24,7 +24,6 @@ sap.ui.define([
             var globalModel = this.getOwnerComponent().getModel("globalModel");
             Helper.refreshList(this.getOwnerComponent());
         },
-
         onSearchFieldSearch: function (oEvent) {
             const aFilter = [];
             const sQuery = oEvent.getParameter("query");
@@ -62,9 +61,12 @@ sap.ui.define([
                 Quantity: oData.Quantity
 
             })
-
+            globalModel.setProperty("/isEnabled",false);
             var router = this.getOwnerComponent().getRouter();
             router.navTo("editProduct")
+            sap.ushell.Container.getRenderer("fiori2").hideHeaderItem("backBtn", false);
+
+            var oBackButton = sap.ui.getCore().byId("backBtn");
         }
     });
 });

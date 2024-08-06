@@ -4,14 +4,16 @@ sap.ui.define([
     "com/solvia/management/utils/Validations",
     "sap/m/MessageToast",
     "sap/ui/core/routing/History",
-    "com/solvia/management/utils/Helper"
+    "com/solvia/management/utils/Helper",
+    "sap/m/MessageBox"
 ], function (
     Controller,
-	Formatter,
-	Validations,
-	MessageToast,
-	History,
-	Helper
+    Formatter,
+    Validations,
+    MessageToast,
+    History,
+    Helper,
+    MessageBox
 ) {
     "use strict";
 
@@ -23,6 +25,8 @@ sap.ui.define([
         onInit: function () {
             var globalModel = this.getOwnerComponent().getModel("globalModel");
             this._sFileContent = null;
+            sap.ushell.Container.getRenderer("fiori2").hideHeaderItem("backBtn", false);
+
         },
 
         onFileUploaderChange: function (oEvent) {
@@ -50,7 +54,7 @@ sap.ui.define([
             this.byId("idFileUploader").$().find("input").click();
         },
 
-        onKaydetButtonPress: function (oEvent) {
+        onKaydetButtonPress: function () {
             var oDataModel = this.getOwnerComponent().getModel("myOdata");
             var sId = this.byId("idIdInput").getValue();
             var sName = this.byId("idNameInput").getValue();
@@ -64,11 +68,10 @@ sap.ui.define([
             var oAvatar = this.byId("idAvatar");
 
             this._sFileContent = oAvatar.getSrc().split(",")[1];
-            console.log(this._sFileContent);
             var oAddEmpData = {
                 Name: sName,
                 Surname: sSurname,
-                Gender, sGender,
+                Gender: sGender,
                 Salary: sSalary,
                 Department: sDepartment,
                 PhoneNumber: sNumber,
@@ -95,6 +98,7 @@ sap.ui.define([
         },
 
         onGeriDnButtonPress: function (oEvent) {
+            
             var oHistory = History.getInstance();
             var sPreviousHash = oHistory.getPreviousHash();
 
@@ -106,6 +110,8 @@ sap.ui.define([
                 var oRouter = this.getOwnerComponent().getRouter();
                 oRouter.navTo("tableEmployee", {});
             }
+            sap.ushell.Container.getRenderer("fiori2").showHeaderItem("backBtn", true);
+
             Helper.refreshTable(this.getOwnerComponent());
 
         },

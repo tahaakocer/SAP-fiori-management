@@ -18,6 +18,10 @@
         >
             <tnt:NavigationList>
                 <tnt:NavigationListItem
+                    icon="sap-icon://nav-back"
+                    select="onNavigationListItemBackSelect"
+                />
+                <tnt:NavigationListItem
                     icon="sap-icon://menu2"
                     select=".onNavigationListItemSelect"
                 />

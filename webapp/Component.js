@@ -30,6 +30,8 @@ sap.ui.define([
                 // set the device model
                 this.setModel(models.createDeviceModel(), "device");
                 this.setModel(models.createJSONModel(), "globalModel");
+                var globalModel = this.getModel("globalModel");
+                globalModel.setProperty("/isEnabled", false);
                 
             }
         });
