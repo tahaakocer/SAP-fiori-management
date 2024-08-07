@@ -1,0 +1,99 @@
+<mvc:View
+    controllerName="com.solvia.management.controller.Help"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    displayBlock="true"
+    height="100%"
+    busyIndicatorDelay="0"
+>
+    <Page
+        showHeader="false"
+        backgroundDesign="Solid"
+    >
+        <HBox height="100%">
+            <mvc:View
+                viewName="com.solvia.management.view.Aside"
+                type="XML"
+            />
+            <VBox
+                justifyContent="Center"
+                alignItems="Center"
+                height="100%"
+                width="55%"
+            >
+                <f:SimpleForm
+                    width="200%"
+                    layout="ResponsiveGridLayout"
+                    class="helpForm"
+                >
+                    <f:toolbar>
+                        <OverflowToolbar style="Clear">
+                            <ToolbarSpacer />
+
+                            <Title
+                                text="Bize Ulaşın"
+                                level="H1"
+                                titleStyle="H1"
+                            />
+                            <ToolbarSpacer />
+                        </OverflowToolbar>
+                    </f:toolbar>
+
+                    <f:content>
+                        <Label
+                            text="İsim"
+                            labelFor="idNameInput"
+                            required="true"
+                        />
+                        <Input
+                            value="{name}"
+                            id="idNameInput"
+                            class="customInput"
+                        />
+                        <Label
+                            text="Soyisim"
+                            labelFor="idSurnameInput"
+                            required="true"
+                        />
+                        <Input
+                            value="{surname}"
+                            id="idSurnameInput"
+                            class="customInput"
+                        />
+                        <Label
+                            text="Email"
+                            labelFor="idEmailInput"
+                            required="true"
+                        />
+                        <Input
+                            value="{email}"
+                            id="idEmailInput"
+                            class="customInput"
+                            type="Email"
+                        />
+                        <Label
+                            text="Mesaj"
+                            required="true"
+                            labelFor="idDescriptionTextArea"
+                        />
+                        <TextArea
+                            id="idDescriptionTextArea"
+                            value="{description}"
+                            valueStateText="En az 20 karakter giriniz."
+                            rows="8"
+                        />
+                    </f:content>
+                </f:SimpleForm>
+                <Button
+                    type="Success"
+                    text="Gönder"
+                    icon="sap-icon://action"
+                    press="onGnderButtonPress"
+                    width="200px"
+                    class="helpButton"
+                />
+            </VBox>
+        </HBox>
+    </Page>
+</mvc:View>

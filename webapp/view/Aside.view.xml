@@ -42,11 +42,6 @@
                         icon="sap-icon://building"
                         key="addEmployee"
                     />
-                    <tnt:NavigationListItem
-                        text="Adres Ekle"
-                        icon="sap-icon://mileage"
-                        key="addAddress"
-                    />
                 </tnt:NavigationListItem>
                 <tnt:NavigationListItem
                     text="Listele"
@@ -60,11 +55,11 @@
                         text="Çalışanlar"
                         key="tableEmployee"
                     />
-                    <tnt:NavigationListItem text="Adresler" />
                 </tnt:NavigationListItem>
                 <tnt:NavigationListItem
                     text="Yardım"
                     icon="sap-icon://sys-help-2"
+                    key="help"
                 />
             </tnt:NavigationList>
             <tnt:fixedItem>

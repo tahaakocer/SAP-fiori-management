@@ -5,9 +5,9 @@ sap.ui.define([
     "sap/ui/core/routing/History"
 ], function (
     Controller,
-	Helper,
-	MessageBox,
-	History
+    Helper,
+    MessageBox,
+    History
 ) {
     "use strict";
 
@@ -59,6 +59,9 @@ sap.ui.define([
                 case "tableProduct":
                     router.navTo("tableProduct");
                     Helper.refreshList(this.getOwnerComponent());
+                    break;
+                case "help":
+                    router.navTo("help");
                     break;
                 default:
                     router.navTo("home");

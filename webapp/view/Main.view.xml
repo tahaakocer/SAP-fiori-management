@@ -9,7 +9,7 @@
 >
     <Page
         id="idPage"
-        title="{i18n>title}"
+        showHeader="false"
     >
         <content>
             <HBox height="100%">
@@ -134,7 +134,6 @@
                         <f:Card
                             class="sapUiMediumMargin"
                             width="300px"
-                            
                         >
                             <f:header>
                                 <card:Header
@@ -201,7 +200,6 @@
                                     <items>
                                         <chart:InteractiveDonutChart
                                             displayedSegments="6"
-                                            
                                         >
                                             <chart:segments>
                                                 <chart:InteractiveDonutChartSegment

@@ -1,5 +1,5 @@
 sap.ui.define(["sap/ui/core/BusyIndicator"], function (
-	BusyIndicator) {
+    BusyIndicator) {
     "use strict";
     var Helper = {
         refreshTable: function (oComponent) {
@@ -20,7 +20,7 @@ sap.ui.define(["sap/ui/core/BusyIndicator"], function (
             });
 
         },
-        refreshList: function(oComponent) {
+        refreshList: function (oComponent) {
             var oDataModel = oComponent.getModel("myOdata");
             var globalModel = oComponent.getModel("globalModel");
             BusyIndicator.show();
@@ -37,10 +37,10 @@ sap.ui.define(["sap/ui/core/BusyIndicator"], function (
                 }
             });
         },
-        calculateRatio: function(count,total) {
+        calculateRatio: function (count, total) {
             let ratio = (count / total) * 100;
             return ratio;
         }
-     }
+    }
     return Helper;
 });
