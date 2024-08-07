@@ -36,6 +36,10 @@ sap.ui.define(["sap/ui/core/BusyIndicator"], function (
                     MessageToast.show("Liste yüklenirken bir hata oluştu");
                 }
             });
+        },
+        calculateRatio: function(count,total) {
+            let ratio = (count / total) * 100;
+            return ratio;
         }
      }
     return Helper;

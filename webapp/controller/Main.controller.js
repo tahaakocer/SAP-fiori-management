@@ -1,11 +1,13 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/BusyIndicator",
-    "sap/m/MessageToast"
+    "sap/m/MessageToast",
+    "com/solvia/management/utils/Helper"
 ],
     function (Controller,
         BusyIndicator,
-        MessageToast) {
+        MessageToast,
+        Helper) {
         "use strict";
 
         return Controller.extend("com.solvia.management.controller.Main", {
@@ -18,48 +20,49 @@ sap.ui.define([
                         BusyIndicator.hide();
                         const results = oData.results;
                         const range = results.slice(1, 4)
-
                         globalModel.setProperty("/getEmployeesForMain", range);
+
+                        const departments = [
+                            { id: "1", name: "admin" },
+                            { id: "2", name: "finance" },
+                            { id: "3", name: "maintenance" },
+                            { id: "4", name: "procurement" },
+                            { id: "5", name: "marketing" },
+                            { id: "6", name: "production" }
+                        ];
+
+                        const genders = [
+                            { id: "E", name: "male" },
+                            { id: "K", name: "female" }
+                        ];
+
+                        const ratios = {};
+
+                        departments.forEach(department => {
+                            const count = results.filter(employee => employee.Department === department.id).length;
+                            ratios[department.name + "Ratio"] = Helper.calculateRatio(count, results.length);
+                            //adminRatio gibi
+                            ratios[department.name + "Count"] = count;
+                        });
+
+                        genders.forEach(gender => {
+                            const count = results.filter(employee => employee.Gender === gender.id).length;
+                            ratios[gender.name + "Ratio"] = Helper.calculateRatio(count, results.length);
+                            ratios[gender.name + "Count"] = count;
+                        });
+
                         globalModel.setProperty("/getEmployeesLength", results.length);
+                        globalModel.setProperty("/ratio", ratios);
 
                         console.log(globalModel.getProperty("/getEmployeesForMain"), results.length);
+                        console.log("Male Ratio: " + ratios.maleRatio + "%, Female Ratio: " + ratios.femaleRatio + "%");
                     },
                     error: function (oError) {
                         BusyIndicator.hide();
-                        console.error("employe data okunamadi");
+                        console.error("Employee data okunamadı");
                         MessageToast.show("Tablo yüklenirken bir hata oluştu");
                     }
                 });
-
-                // Donut Chart'ı tanımlama
-                var oVizFrame = this.getView().byId("idVizFrame");
-                oVizFrame.setVizProperties({
-                    title: {
-                        text: "Çalışan Dağılımı"
-                    },
-                    plotArea: {
-                        dataLabel: {
-                            visible: true
-                        }
-                    },
-                    valueAxis: {
-                        label: {
-                            formatString: "#,##0"  // Numara formatlaması
-                        },
-                        title: {
-                            visible: false
-                        }
-                    },
-                    categoryAxis: {
-                        title: {
-                            visible: false
-                        }
-                    }
-                });
-
-                // Model'i bağlama (globalModel içindeki /getAllEmployes)
-                var oGlobalModel = this.getOwnerComponent().getModel("globalModel");
-                oVizFrame.setModel(oGlobalModel);
             },
 
             onGitButtonEmployeePress: function (oEvent) {
@@ -71,9 +74,26 @@ sap.ui.define([
                 var router = this.getOwnerComponent().getRouter();
                 router.navTo("addProduct");
             },
+
             onDahaFazlasnGrButtonPress: function (params) {
                 var router = this.getOwnerComponent().getRouter();
                 router.navTo("tableEmployee");
+            },
+
+            onInteractiveDonutChartSelectionChanged: function (oEvent) {
+
+            },
+
+            press: function (oEvent) {
+
+            },
+
+            onInteractiveDonutChartSelectionChanged: function (oEvent) {
+
+            },
+
+            onInteractiveDonutChartPress: function (oEvent) {
+
             }
         });
     });

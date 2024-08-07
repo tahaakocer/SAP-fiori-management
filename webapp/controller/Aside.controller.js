@@ -64,17 +64,6 @@ sap.ui.define([
                     router.navTo("home");
                     break;
             }
-        },
-
-        onNavigationListItemBackSelect: function (oEvent) {
-            console.log("GERi DÖN");
-            var oHistory = History.getInstance();
-            var sPreviousHash = oHistory.getPreviousHash();
-
-            if (sPreviousHash !== undefined) {
-                console.log("Önceki sayfaya gidiliyor");
-                window.history.go(-1);
-            }
         }
     });
 });

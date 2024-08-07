@@ -5,9 +5,7 @@
     xmlns="sap.m"
     xmlns:f="sap.f"
     xmlns:card="sap.f.cards"
-    xmlns:viz="sap.viz.ui5.controls"
-    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
-    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:chart="sap.suite.ui.microchart"
 >
     <Page
         id="idPage"
@@ -76,6 +74,7 @@
                         <f:Card
                             class="sapUiMediumMargin"
                             width="300px"
+                            height="405px"
                         >
                             <f:header>
                                 <card:Header
@@ -135,46 +134,118 @@
                         <f:Card
                             class="sapUiMediumMargin"
                             width="300px"
+                            
                         >
                             <f:header>
-                                <card:Header title="Departman dağılımı" />
+                                <card:Header
+                                    title="Çalışan Cinsiyet Dağılımı"
+                                />
                             </f:header>
                             <f:content>
-                                <viz:VizFrame
-                                    id="idVizFrame"
-                                    uiConfig="{applicationSet:'fiori'}"
-                                    height='100%'
-                                    width="100%"
-                                    vizType='donut'
+                                <VBox>
+                                    <GenericTile
+                                        width="200%"
+                                        header="Kadın Çalışan Oranı"
+                                        subheader="Güncel Sayı: {globalModel>/ratio/femaleCount}"
+                                        frameType="Auto"
+                                    >
+                                        <tileContent>
+                                            <TileContent>
+                                                <content>
+                                                    <chart:RadialMicroChart
+                                                        percentage="{globalModel>/ratio/femaleRatio}"
+                                                        alignContent="Right"
+                                                        valueColor="Critical"
+                                                    />
+                                                </content>
+                                            </TileContent>
+                                        </tileContent>
+                                    </GenericTile>
+                                    <GenericTile
+                                        width="200%"
+                                        header="Erkek Çalışan Oranı"
+                                        subheader="Güncel Sayı: {globalModel>/ratio/maleCount}"
+                                        frameType="Auto"
+                                    >
+                                        <tileContent>
+                                            <TileContent>
+                                                <content>
+                                                    <chart:RadialMicroChart
+                                                        percentage="{globalModel>/ratio/maleRatio}"
+                                                        alignContent="Right"
+                                                    />
+                                                </content>
+                                            </TileContent>
+                                        </tileContent>
+                                    </GenericTile>
+                                </VBox>
+                            </f:content>
+                        </f:Card>
+                    </HBox>
+                    <HBox>
+                        <f:Card
+                            class="sapUiMediumMargin"
+                            width="400px"
+                            height="230px"
+                        >
+                            <f:header>
+                                <card:Header title="Departman Dağılımı" />
+                            </f:header>
+                            <f:content>
+                                <FlexBox
+                                    width="40rem"
+                                    height="10rem"
+                                    alignItems="Start"
+                                    justifyContent="SpaceBetween"
                                 >
-                                    <viz:dataset>
-                                        <viz.data:FlattenedDataset
-                                            data="{globalModel>/getAllEmployees}"
+                                    <items>
+                                        <chart:InteractiveDonutChart
+                                            displayedSegments="6"
+                                            
                                         >
-                                            <viz.data:measures>
-                                                <viz.data:MeasureDefinition
-                                                    name="Employee Count"
-                                                    value="{globalModel>/getEmployeesLength}"
+                                            <chart:segments>
+                                                <chart:InteractiveDonutChartSegment
+                                                    label="Admin"
+                                                    value="{globalModel>/ratio/adminRatio}"
+                                                    displayedValue="{globalModel>/ratio/adminRatio}%"
+                                                    color="Error"
                                                 />
-                                            </viz.data:measures>
-                                        </viz.data:FlattenedDataset>
-                                    </viz:dataset>
-                                    <viz:feeds>
-                                        <viz.feeds:FeedItem
-                                            uid="size"
-                                            type="Measure"
-                                            values="Employee Count"
-                                        />
-                                        <viz.feeds:FeedItem
-                                            uid="color"
-                                            type="Dimension"
-                                            values="Department"
-                                        />
-                                    </viz:feeds>
-                                    <viz:dependents>
-                                        <viz:Popover id="idPopover" />
-                                    </viz:dependents>
-                                </viz:VizFrame>
+                                                <chart:InteractiveDonutChartSegment
+                                                    label="Finans"
+                                                    value="{globalModel>/ratio/financeRatio}"
+                                                    displayedValue="{globalModel>/ratio/financeRatio}%"
+                                                    color="Critical"
+                                                />
+                                                <chart:InteractiveDonutChartSegment
+                                                    label="Bakım"
+                                                    value="{globalModel>/ratio/maintenanceRatio}"
+                                                    displayedValue="{globalModel>/ratio/maintenanceRatio}%"
+                                                    color="Good"
+                                                />
+                                                <chart:InteractiveDonutChartSegment
+                                                    label="Tedarik"
+                                                    value="{globalModel>/ratio/procurementRatio}"
+                                                    displayedValue="{globalModel>/ratio/procurementRatio}%"
+                                                    color="Error"
+                                                />
+
+                                                <chart:InteractiveDonutChartSegment
+                                                    label="Pazarlama"
+                                                    value="{globalModel>/ratio/marketingRatio}"
+                                                    displayedValue="{globalModel>/ratio/marketingRatio}%"
+                                                    color="Critical"
+                                                />
+
+                                                <chart:InteractiveDonutChartSegment
+                                                    label="Üretim"
+                                                    value="{globalModel>/ratio/productionRatio}"
+                                                    displayedValue="{globalModel>/ratio/productionRatio}%"
+                                                    color="Good"
+                                                />
+                                            </chart:segments>
+                                        </chart:InteractiveDonutChart>
+                                    </items>
+                                </FlexBox>
                             </f:content>
                         </f:Card>
                     </HBox>

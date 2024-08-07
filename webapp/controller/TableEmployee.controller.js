@@ -143,6 +143,7 @@ sap.ui.define([
 				Pimage: oData.Pimage
 			});
 			sap.ushell.Container.getRenderer("fiori2").hideHeaderItem("backBtn", false);
+			
 			console.log(globalModel.getProperty("/edit"));
 			router.navTo("edit");
 
