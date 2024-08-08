@@ -2,18 +2,49 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/BusyIndicator",
     "sap/m/MessageToast",
-    "com/solvia/management/utils/Helper"
+    "com/solvia/management/utils/Helper",
+    "com/solvia/management/utils/Formatter"
 ],
     function (Controller,
-        BusyIndicator,
-        MessageToast,
-        Helper) {
+	BusyIndicator,
+	MessageToast,
+	Helper,
+	Formatter) {
         "use strict";
 
         return Controller.extend("com.solvia.management.controller.Main", {
+            formatter: Formatter,
             onInit: function () {
                 var globalModel = this.getOwnerComponent().getModel("globalModel");
                 var oDataModel = this.getOwnerComponent().getModel("myOdata");
+
+                oDataModel.read("/productSet", {
+                    success: function (oData) {
+                        const results = oData.results;
+                        const range = results.slice(1, 4)
+                        globalModel.setProperty("/getProductsForMain", range);
+
+                        const states = [
+                            { id: "1", name: "magaza" },
+                            { id: "2", name: "depo" },
+                            { id: "3", name: "yolda" }
+                        ];
+                        let ratios = {};
+
+                        states.forEach(state => {
+                            const count = results.filter(product => product.State === state.id).length;
+                            ratios[state.name + "Ratio"] = Helper.calculateRatio(count, results.length);
+                            ratios[state.name + "Count"] = count;
+                        });
+                        globalModel.setProperty("/getProductsLength", results.length);
+                        globalModel.setProperty("/productRatio", ratios);
+                    },
+                    error: function (oError) {
+                        BusyIndicator.hide();
+                        console.error("Products data okunamadı");
+                        MessageToast.show("Veri yüklenirken bir hata oluştu");
+                    }
+                })
                 BusyIndicator.show();
                 oDataModel.read("/employeeSet", {
                     success: function (oData) {
@@ -35,8 +66,7 @@ sap.ui.define([
                             { id: "E", name: "male" },
                             { id: "K", name: "female" }
                         ];
-
-                        const ratios = {};
+                        let ratios = {};
 
                         departments.forEach(department => {
                             const count = results.filter(employee => employee.Department === department.id).length;
@@ -52,15 +82,14 @@ sap.ui.define([
                         });
 
                         globalModel.setProperty("/getEmployeesLength", results.length);
-                        globalModel.setProperty("/ratio", ratios);
+                        globalModel.setProperty("/employeeRatio", ratios);
 
-                        console.log(globalModel.getProperty("/getEmployeesForMain"), results.length);
-                        console.log("Male Ratio: " + ratios.maleRatio + "%, Female Ratio: " + ratios.femaleRatio + "%");
+
                     },
                     error: function (oError) {
                         BusyIndicator.hide();
                         console.error("Employee data okunamadı");
-                        MessageToast.show("Tablo yüklenirken bir hata oluştu");
+                        MessageToast.show("Veri yüklenirken bir hata oluştu");
                     }
                 });
             },
@@ -81,19 +110,8 @@ sap.ui.define([
             },
 
             onInteractiveDonutChartSelectionChanged: function (oEvent) {
-
-            },
-
-            press: function (oEvent) {
-
-            },
-
-            onInteractiveDonutChartSelectionChanged: function (oEvent) {
-
-            },
-
-            onInteractiveDonutChartPress: function (oEvent) {
-
+                var oSegment = oEvent.getParameter("segment");
+                MessageToast.show("The selection changed: " + oSegment.getLabel() + " " + ((oSegment.getSelected()) ? "selected" : "not selected"));
             }
         });
     });

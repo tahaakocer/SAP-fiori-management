@@ -55,6 +55,10 @@
                         text="Çalışanlar"
                         key="tableEmployee"
                     />
+                    <tnt:NavigationListItem
+                        text="deneme"
+                        key="deneme"
+                    />
                 </tnt:NavigationListItem>
                 <tnt:NavigationListItem
                     text="Yardım"

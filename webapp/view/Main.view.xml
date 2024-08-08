@@ -145,14 +145,14 @@
                                     <GenericTile
                                         width="200%"
                                         header="Kadın Çalışan Oranı"
-                                        subheader="Güncel Sayı: {globalModel>/ratio/femaleCount}"
+                                        subheader="Güncel Sayı: {globalModel>/employeeRatio/femaleCount}"
                                         frameType="Auto"
                                     >
                                         <tileContent>
                                             <TileContent>
                                                 <content>
                                                     <chart:RadialMicroChart
-                                                        percentage="{globalModel>/ratio/femaleRatio}"
+                                                        percentage="{globalModel>/employeeRatio/femaleRatio}"
                                                         alignContent="Right"
                                                         valueColor="Critical"
                                                     />
@@ -163,14 +163,14 @@
                                     <GenericTile
                                         width="200%"
                                         header="Erkek Çalışan Oranı"
-                                        subheader="Güncel Sayı: {globalModel>/ratio/maleCount}"
+                                        subheader="Güncel Sayı: {globalModel>/employeeRatio/maleCount}"
                                         frameType="Auto"
                                     >
                                         <tileContent>
                                             <TileContent>
                                                 <content>
                                                     <chart:RadialMicroChart
-                                                        percentage="{globalModel>/ratio/maleRatio}"
+                                                        percentage="{globalModel>/employeeRatio/maleRatio}"
                                                         alignContent="Right"
                                                     />
                                                 </content>
@@ -200,44 +200,90 @@
                                     <items>
                                         <chart:InteractiveDonutChart
                                             displayedSegments="6"
+                                            selectionChanged="onInteractiveDonutChartSelectionChanged"
                                         >
                                             <chart:segments>
                                                 <chart:InteractiveDonutChartSegment
                                                     label="Admin"
-                                                    value="{globalModel>/ratio/adminRatio}"
-                                                    displayedValue="{globalModel>/ratio/adminRatio}%"
+                                                    value="{globalModel>/employeeRatio/adminRatio}"
+                                                    displayedValue="{globalModel>/employeeRatio/adminRatio}%"
                                                     color="Error"
                                                 />
                                                 <chart:InteractiveDonutChartSegment
                                                     label="Finans"
-                                                    value="{globalModel>/ratio/financeRatio}"
-                                                    displayedValue="{globalModel>/ratio/financeRatio}%"
+                                                    value="{globalModel>/employeeRatio/depoRatio}"
+                                                    displayedValue="{globalModel>/employeeRatio/depoRatio}%"
                                                     color="Critical"
                                                 />
                                                 <chart:InteractiveDonutChartSegment
                                                     label="Bakım"
-                                                    value="{globalModel>/ratio/maintenanceRatio}"
-                                                    displayedValue="{globalModel>/ratio/maintenanceRatio}%"
+                                                    value="{globalModel>/employeeRatio/yoldaRatio}"
+                                                    displayedValue="{globalModel>/employeeRatio/yoldaRatio}%"
                                                     color="Good"
                                                 />
                                                 <chart:InteractiveDonutChartSegment
                                                     label="Tedarik"
-                                                    value="{globalModel>/ratio/procurementRatio}"
-                                                    displayedValue="{globalModel>/ratio/procurementRatio}%"
+                                                    value="{globalModel>/employeeRatio/procurementRatio}"
+                                                    displayedValue="{globalModel>/employeeRatio/procurementRatio}%"
                                                     color="Error"
                                                 />
 
                                                 <chart:InteractiveDonutChartSegment
                                                     label="Pazarlama"
-                                                    value="{globalModel>/ratio/marketingRatio}"
-                                                    displayedValue="{globalModel>/ratio/marketingRatio}%"
+                                                    value="{globalModel>/employeeRatio/marketingRatio}"
+                                                    displayedValue="{globalModel>/employeeRatio/marketingRatio}%"
                                                     color="Critical"
                                                 />
 
                                                 <chart:InteractiveDonutChartSegment
                                                     label="Üretim"
-                                                    value="{globalModel>/ratio/productionRatio}"
-                                                    displayedValue="{globalModel>/ratio/productionRatio}%"
+                                                    value="{globalModel>/employeeRatio/productionRatio}"
+                                                    displayedValue="{globalModel>/employeeRatio/productionRatio}%"
+                                                    color="Good"
+                                                />
+                                            </chart:segments>
+                                        </chart:InteractiveDonutChart>
+                                    </items>
+                                </FlexBox>
+                            </f:content>
+                        </f:Card>
+                        <f:Card
+                            class="sapUiMediumMargin"
+                            width="400px"
+                            height="230px"
+                        >
+                            <f:header>
+                                <card:Header title="Ürünlerin Durum Dağılımı" />
+                            </f:header>
+                            <f:content>
+                                <FlexBox
+                                    width="40rem"
+                                    height="10rem"
+                                    alignItems="Center"
+                                    justifyContent="SpaceBetween"
+                                >
+                                    <items>
+                                        <chart:InteractiveDonutChart
+                                            displayedSegments="6"
+                                            selectionChanged="onInteractiveDonutChartSelectionChanged"
+                                        >
+                                            <chart:segments>
+                                                <chart:InteractiveDonutChartSegment
+                                                    label="Mağazada"
+                                                    value="{globalModel>/productRatio/magazaRatio}"
+                                                    displayedValue="{path: 'globalModel>/productRatio/magazaRatio', formatter: '.formatter.formatPrice'} %"
+                                                    color="Error"
+                                                />
+                                                <chart:InteractiveDonutChartSegment
+                                                    label="Depoda"
+                                                    value="{globalModel>/productRatio/depoRatio}"
+                                                    displayedValue="{path: 'globalModel>/productRatio/depoRatio', formatter: '.formatter.formatPrice'} %"
+                                                    color="Critical"
+                                                />
+                                                <chart:InteractiveDonutChartSegment
+                                                    label="Yolda"
+                                                    value="{globalModel>/productRatio/yoldaRatio}"
+                                                    displayedValue="{path: 'globalModel>/productRatio/yoldaRatio', formatter: '.formatter.formatPrice'} %"
                                                     color="Good"
                                                 />
                                             </chart:segments>
