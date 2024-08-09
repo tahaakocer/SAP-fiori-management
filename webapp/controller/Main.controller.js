@@ -6,17 +6,27 @@ sap.ui.define([
     "com/solvia/management/utils/Formatter"
 ],
     function (Controller,
-	BusyIndicator,
-	MessageToast,
-	Helper,
-	Formatter) {
+        BusyIndicator,
+        MessageToast,
+        Helper,
+        Formatter) {
         "use strict";
 
         return Controller.extend("com.solvia.management.controller.Main", {
             formatter: Formatter,
+            oVizFrame: null,
             onInit: function () {
                 var globalModel = this.getOwnerComponent().getModel("globalModel");
                 var oDataModel = this.getOwnerComponent().getModel("myOdata");
+
+                this.oVizFrame = this.getView().byId("idVizFrame");
+                this.oVizFrame.setVizProperties({
+                    plotArea: {
+                        dataLabel: {
+                            visible: true
+                        }
+                    }
+                });
 
                 oDataModel.read("/productSet", {
                     success: function (oData) {
@@ -70,8 +80,6 @@ sap.ui.define([
 
                         departments.forEach(department => {
                             const count = results.filter(employee => employee.Department === department.id).length;
-                            ratios[department.name + "Ratio"] = Helper.calculateRatio(count, results.length);
-                            //adminRatio gibi
                             ratios[department.name + "Count"] = count;
                         });
 
@@ -82,9 +90,17 @@ sap.ui.define([
                         });
 
                         globalModel.setProperty("/getEmployeesLength", results.length);
-                        globalModel.setProperty("/employeeRatio", ratios);
 
-
+                        var data = [
+                            { "name": "admin", "count": ratios.adminCount },
+                            { "name": "marketing", "count": ratios.marketingCount },
+                            { "name": "finance", "count": ratios.financeCount },
+                            { "name": "maintenance", "count": ratios.maintenanceCount },
+                            { "name": "procurement", "count": ratios.procurementCount },
+                            { "name": "production", "count": ratios.productionCount }
+                        ];
+                        globalModel.setProperty("/employeeRatio",ratios);
+                        globalModel.setProperty("/vizData", data);
                     },
                     error: function (oError) {
                         BusyIndicator.hide();
@@ -112,6 +128,10 @@ sap.ui.define([
             onInteractiveDonutChartSelectionChanged: function (oEvent) {
                 var oSegment = oEvent.getParameter("segment");
                 MessageToast.show("The selection changed: " + oSegment.getLabel() + " " + ((oSegment.getSelected()) ? "selected" : "not selected"));
+            },
+
+            onSwitchChange: function (oEvent) {
+               
             }
         });
     });

@@ -6,6 +6,9 @@
     xmlns:f="sap.f"
     xmlns:card="sap.f.cards"
     xmlns:chart="sap.suite.ui.microchart"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:viz="sap.viz.ui5.controls"
 >
     <Page
         id="idPage"
@@ -19,58 +22,63 @@
                 />
                 <VBox>
                     <HBox>
-                        <f:Card
-                            class="sapUiMediumMargin"
-                            width="300px"
-                        >
-                            <f:header>
-                                <card:Header
-                                    title="Yeni Ürün"
-                                    subtitle="Yeni bir ürün ekleyin"
-                                    iconSrc="sap-icon://SAP-icons-TNT/block"
-                                />
-                            </f:header>
-                            <f:content>
-                                <VBox
-                                    class="mainButton"
-                                    height="100%"
-                                    width="100%"
-                                >
-                                    <Button
-                                        icon="sap-icon://SAP-icons-TNT/data-output-arrow"
-                                        text="Git"
-                                        press="onGitButtonProductPress"
+                        <VBox>
+                            <f:Card
+                                class="sapUiMediumMargin"
+                                width="200px"
+                                height="170px"
+                            >
+                                <f:header>
+                                    <card:Header
+                                        title="Yeni Ürün"
+                                        subtitle="Yeni bir ürün ekleyin"
+                                        iconSrc="sap-icon://SAP-icons-TNT/block"
                                     />
-                                </VBox>
-                            </f:content>
-                        </f:Card>
-                        <f:Card
-                            class="sapUiMediumMargin"
-                            width="300px"
-                        >
-                            <f:header>
-                                <card:Header
-                                    title="Yeni Çalışan"
-                                    subtitle="Yeni bir çalışan ekleyin"
-                                    iconSrc="sap-icon://employee"
-                                />
-                            </f:header>
-                            <f:content>
-                                <VBox
-                                    class="mainButton"
-                                    height="100%"
-                                    width="100%"
-                                >
-                                    <Button
-                                        icon="sap-icon://SAP-icons-TNT/data-output-arrow"
-                                        text="Git"
-                                        press="onGitButtonEmployeePress"
+                                </f:header>
+                                <f:content>
+                                    <VBox
+                                        class="mainButton"
+                                        height="100%"
+                                        width="100%"
+                                    >
+                                        <Button
+                                            width="100px"
+                                            icon="sap-icon://SAP-icons-TNT/data-output-arrow"
+                                            text="Git"
+                                            press="onGitButtonProductPress"
+                                        />
+                                    </VBox>
+                                </f:content>
+                            </f:Card>
+                            <f:Card
+                                class="sapUiMediumMargin"
+                                width="200px"
+                                height="170px"
+                            >
+                                <f:header>
+                                    <card:Header
+                                        title="Yeni Çalışan"
+                                        subtitle="Yeni bir çalışan ekleyin"
+                                        iconSrc="sap-icon://employee"
                                     />
-                                </VBox>
-                            </f:content>
-                        </f:Card>
-                    </HBox>
-                    <HBox>
+                                </f:header>
+                                <f:content>
+                                    <VBox
+                                        class="mainButton"
+                                        height="100%"
+                                        width="100%"
+                                    >
+                                        <Button
+                                            width="100px"
+                                            icon="sap-icon://SAP-icons-TNT/data-output-arrow"
+                                            text="Git"
+                                            press="onGitButtonEmployeePress"
+                                        />
+                                    </VBox>
+                                </f:content>
+                            </f:Card>
+                        </VBox>
+
                         <f:Card
                             class="sapUiMediumMargin"
                             width="300px"
@@ -88,6 +96,7 @@
                                         class="sapUiSmallMarginBottom"
                                         showSeparators="Inner"
                                         items="{ path: 'globalModel>/getEmployeesForMain' }"
+                                        width="160%"
                                     >
                                         <CustomListItem>
                                             <HBox
@@ -120,7 +129,7 @@
                                     <VBox
                                         class="mainButton"
                                         height="100%"
-                                        width="100%"
+                                        width="155%"
                                     >
                                         <Button
                                             icon="sap-icon://SAP-icons-TNT/data-output-arrow"
@@ -131,8 +140,9 @@
                                 </VBox>
                             </f:content>
                         </f:Card>
+
                         <f:Card
-                            class="sapUiMediumMargin"
+                            class="sapUiMediumMargin mainCinsiyet"
                             width="300px"
                         >
                             <f:header>
@@ -181,64 +191,49 @@
                             </f:content>
                         </f:Card>
                     </HBox>
-                    <HBox>
+                    <HBox
+                      >
                         <f:Card
                             class="sapUiMediumMargin"
                             width="400px"
-                            height="230px"
+                            height="300px"
+                            
                         >
                             <f:header>
-                                <card:Header title="Departman Dağılımı" />
+                                <card:Header title="Ürün Durum Dağılımı" />
                             </f:header>
                             <f:content>
                                 <FlexBox
                                     width="40rem"
-                                    height="10rem"
+                                    height="30rem"
                                     alignItems="Start"
-                                    justifyContent="SpaceBetween"
+                                    justifyContent="Center"
+                                    class="mainFlexBox"
                                 >
                                     <items>
                                         <chart:InteractiveDonutChart
                                             displayedSegments="6"
                                             selectionChanged="onInteractiveDonutChartSelectionChanged"
+
+                                            
                                         >
                                             <chart:segments>
                                                 <chart:InteractiveDonutChartSegment
-                                                    label="Admin"
-                                                    value="{globalModel>/employeeRatio/adminRatio}"
-                                                    displayedValue="{globalModel>/employeeRatio/adminRatio}%"
+                                                    label="Mağazada"
+                                                    value="{globalModel>/productRatio/magazaRatio}"
+                                                    displayedValue="{path: 'globalModel>/productRatio/magazaRatio', formatter: '.formatter.formatPrice'}%"
                                                     color="Error"
                                                 />
                                                 <chart:InteractiveDonutChartSegment
-                                                    label="Finans"
-                                                    value="{globalModel>/employeeRatio/depoRatio}"
-                                                    displayedValue="{globalModel>/employeeRatio/depoRatio}%"
+                                                    label="Depoda"
+                                                    value="{globalModel>/productRatio/depoRatio}"
+                                                    displayedValue="{path: 'globalModel>/productRatio/depoRatio', formatter: '.formatter.formatPrice'}%"
                                                     color="Critical"
                                                 />
                                                 <chart:InteractiveDonutChartSegment
-                                                    label="Bakım"
-                                                    value="{globalModel>/employeeRatio/yoldaRatio}"
-                                                    displayedValue="{globalModel>/employeeRatio/yoldaRatio}%"
-                                                    color="Good"
-                                                />
-                                                <chart:InteractiveDonutChartSegment
-                                                    label="Tedarik"
-                                                    value="{globalModel>/employeeRatio/procurementRatio}"
-                                                    displayedValue="{globalModel>/employeeRatio/procurementRatio}%"
-                                                    color="Error"
-                                                />
-
-                                                <chart:InteractiveDonutChartSegment
-                                                    label="Pazarlama"
-                                                    value="{globalModel>/employeeRatio/marketingRatio}"
-                                                    displayedValue="{globalModel>/employeeRatio/marketingRatio}%"
-                                                    color="Critical"
-                                                />
-
-                                                <chart:InteractiveDonutChartSegment
-                                                    label="Üretim"
-                                                    value="{globalModel>/employeeRatio/productionRatio}"
-                                                    displayedValue="{globalModel>/employeeRatio/productionRatio}%"
+                                                    label="Yolda"
+                                                    value="{globalModel>/productRatio/yoldaRatio}"
+                                                    displayedValue="{path: 'globalModel>/productRatio/yoldaRatio', formatter: '.formatter.formatPrice'}%"
                                                     color="Good"
                                                 />
                                             </chart:segments>
@@ -247,49 +242,58 @@
                                 </FlexBox>
                             </f:content>
                         </f:Card>
+
                         <f:Card
                             class="sapUiMediumMargin"
-                            width="400px"
-                            height="230px"
+                            width="450px"
+                            height="300px"
                         >
                             <f:header>
-                                <card:Header title="Ürünlerin Durum Dağılımı" />
+                                <card:Header title="Departman Dağılımı" />
                             </f:header>
                             <f:content>
-                                <FlexBox
-                                    width="40rem"
-                                    height="10rem"
-                                    alignItems="Center"
-                                    justifyContent="SpaceBetween"
+                                <viz:VizFrame
+                                    id="idVizFrame"
+                                    uiConfig="{applicationSet:'fiori'}"
+                                    height='100%'
+                                    width="100%"
+                                    vizType='donut'
                                 >
-                                    <items>
-                                        <chart:InteractiveDonutChart
-                                            displayedSegments="6"
-                                            selectionChanged="onInteractiveDonutChartSelectionChanged"
+                                    <viz:dataset>
+                                        <viz.data:FlattenedDataset
+                                            data="{globalModel>/vizData}"
                                         >
-                                            <chart:segments>
-                                                <chart:InteractiveDonutChartSegment
-                                                    label="Mağazada"
-                                                    value="{globalModel>/productRatio/magazaRatio}"
-                                                    displayedValue="{path: 'globalModel>/productRatio/magazaRatio', formatter: '.formatter.formatPrice'} %"
-                                                    color="Error"
+                                            <viz.data:dimensions>
+                                                <viz.data:DimensionDefinition
+                                                    name="Store Name"
+                                                    value="{globalModel>name}"
                                                 />
-                                                <chart:InteractiveDonutChartSegment
-                                                    label="Depoda"
-                                                    value="{globalModel>/productRatio/depoRatio}"
-                                                    displayedValue="{path: 'globalModel>/productRatio/depoRatio', formatter: '.formatter.formatPrice'} %"
-                                                    color="Critical"
+                                            </viz.data:dimensions>
+                                            <viz.data:measures>
+                                                <viz.data:MeasureDefinition
+                                                    name="Revenue"
+                                                    value="{globalModel>count}"
                                                 />
-                                                <chart:InteractiveDonutChartSegment
-                                                    label="Yolda"
-                                                    value="{globalModel>/productRatio/yoldaRatio}"
-                                                    displayedValue="{path: 'globalModel>/productRatio/yoldaRatio', formatter: '.formatter.formatPrice'} %"
-                                                    color="Good"
-                                                />
-                                            </chart:segments>
-                                        </chart:InteractiveDonutChart>
-                                    </items>
-                                </FlexBox>
+                                            </viz.data:measures>
+                                        </viz.data:FlattenedDataset>
+                                    </viz:dataset>
+
+                                    <viz:feeds>
+                                        <viz.feeds:FeedItem
+                                            uid="size"
+                                            type="Measure"
+                                            values="Revenue"
+                                        />
+                                        <viz.feeds:FeedItem
+                                            uid="color"
+                                            type="Dimension"
+                                            values="Store Name"
+                                        />
+                                    </viz:feeds>
+                                    <viz:dependents>
+                                        <viz:Popover id="idPopOver" />
+                                    </viz:dependents>
+                                </viz:VizFrame>
                             </f:content>
                         </f:Card>
                     </HBox>

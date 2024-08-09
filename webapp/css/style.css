@@ -131,6 +131,7 @@
   text-align: center;
   align-items: end;
   margin-right: 0.5rem;
+  justify-content: end;
 }
 
 .customMainAvatar {
@@ -160,4 +161,6 @@
 .helpButton {
   margin-left: 18.7rem;
 }
-
+.mainFlexBox {
+  margin-top: 50px;
+}
