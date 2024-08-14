@@ -66,6 +66,9 @@ sap.ui.define([
                 case "deneme":
                     router.navTo("deneme");
                     break;
+                case "contact":
+                    router.navTo("contact");
+                    break;
                 default:
                     router.navTo("home");
                     break;
